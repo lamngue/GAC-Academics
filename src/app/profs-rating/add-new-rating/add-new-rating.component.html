@@ -1,0 +1,59 @@
+<div class="prof-title">
+    <button mat-raised-button (click)="goBack()">Back</button>
+    <p style="margin-top: 10px;" class="mat-headline">Please add a new rating for professor {{ professor['fullName'] }}</p>
+        <form (ngSubmit)="onSubmit(commentForm.value)" [formGroup]="commentForm" class="prof-rating-form">
+            <mat-form-field class="full-width">
+                <mat-label>Course code</mat-label>
+                <input matInput formControlName="course" [errorStateMatcher]="matcher"
+                    placeholder="Ex. MCS-177">
+                <mat-hint>Enter a course that you took with this professor</mat-hint>
+                <mat-error *ngIf="commentForm.get('course').hasError('required')">
+                    Course code is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+            <br/>
+            <mat-form-field class="full-width">
+                <mat-label>Leave a Rating</mat-label>
+                <mat-select formControlName="rating" [errorStateMatcher]="matcher">
+                    <mat-option value="1">1 - I wouldn't recommend this prof</mat-option>
+                    <mat-option value="2">2 - It's ok not studying on your own</mat-option>
+                    <mat-option value="3">3 - The prof does ok</mat-option>
+                    <mat-option value="4">4 - I would recommend this prof</mat-option>
+                    <mat-option value="5">5 - The best prof ever!</mat-option>
+                </mat-select>
+                <mat-error *ngIf="commentForm.get('rating').hasError('required')">
+                    Rating is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <mat-label>Leave a comment</mat-label>
+                <textarea formControlName="description" class="prof-comment" [errorStateMatcher]="matcher" matInput placeholder="Ex. It makes me feel..."></textarea>
+                <mat-error *ngIf="commentForm.get('description').hasError('required')">
+                    Comment is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+            <button mat-raised-button color="primary" type="submit">Submit</button>
+        </form>
+    
+</div>
+<div class="rating-rule">
+<mat-card>
+    <mat-card-title>Some rule(s) regarding rating your professor</mat-card-title>
+    <mat-card-subtitle>Do(s):</mat-card-subtitle>
+    <mat-card-content>
+        <ol>
+            <li>Check your comment for grammatical errors</li>
+            <li>Course code must be the right code that's on the registra catalog</li>
+            <li>Be descriptive about professor's teaching, and how it impacts your learning</li>
+        </ol>
+    </mat-card-content>
+    <mat-card-subtitle>Don't(s):</mat-card-subtitle>
+    <mat-card-content>
+        <ol>
+            <li>Name calling your prof</li>
+            <li>Have disrespectful comment using profanity</li>
+        </ol>
+    </mat-card-content>
+</mat-card>
+
+</div>

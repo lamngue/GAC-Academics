@@ -1,0 +1,22 @@
+<div class="prof-overview" *ngIf="professor">
+   <div class="example-button-row">
+    <button mat-raised-button (click)="goBack()">Back</button>
+    <button mat-raised-button color="primary" routerLink="/prof-detail/new-rating/{{professor['id']}}">Add a new rating</button>
+   </div>
+   <p class="mat-body-1"><b>Name:</b> {{ professor['fullName'] }}</p>
+   <p class="mat-body-1"><b>Professor in department:</b> {{ professor['department'] }}</p>
+   <p class="mat-body-1"><b>Overall rating:</b> {{ professor['ratings'] ? getProfOverallRating(professor['ratings']) + ' stars' : 'This professor hasn\'t gotten any rating yet'}} </p>
+   <div *ngIf="professor['ratings']">
+    <p class="mat-body-1"><b>Details:</b></p>
+    <div *ngFor="let rating of professor['ratings']">
+        <mat-card class="rating-detail">
+            <p class="mat-subheading-1">Rating: {{rating['rating']}} for <b>{{rating['course']}}</b> on
+                {{ rating['dateAdded'] }}</p>
+            <p class="mat-subheading-1">{{rating['description']}}</p>
+        </mat-card>
+    </div>
+   </div>
+</div>
+<div class="prof-image" *ngIf="professor">
+    <img class="prof-avatar" src="{{professor['imageLink']}}" />
+</div>

@@ -1,0 +1,26 @@
+.show-content {
+    margin: 5px;
+}
+
+.rate-prof {
+    height: 95vh;
+    padding: 5px;
+}
+
+.prof-search {
+  position: absolute;
+  width: 300px;
+  right: 5%;
+}
+
+.depts {
+    padding: 5px;
+}
+
+.content { 
+  padding: 16px; 
+}
+
+.content > mat-card { 
+  width: 200px; 
+}

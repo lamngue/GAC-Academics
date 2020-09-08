@@ -1,0 +1,30 @@
+.prof-overview {
+    position: absolute;
+    left: 5%;
+    top: 10%;
+}
+
+.prof-image {
+    position: relative;
+}
+
+.prof-avatar {
+    position: absolute;
+    right: 10vw;
+    width: 15vw;
+    margin-top: 5vw;
+}
+
+.rating-detail {
+    margin-bottom: 10px;
+    width: 450px;
+}
+
+.example-button-row {
+  display: table-cell;
+  width: 490px;
+}
+
+.example-button-row .mat-button-base {
+  margin: 8px 8px 8px 0;
+}
