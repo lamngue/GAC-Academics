@@ -1,7 +1,7 @@
 <div class="prof-overview" *ngIf="professor">
    <div class="example-button-row">
     <button mat-raised-button (click)="goBack()">Back</button>
-    <button mat-raised-button color="primary" routerLink="/prof-detail/new-rating/{{professor['id']}}">Add a new rating</button>
+    <button mat-raised-button color="primary" routerLink="/home-page/prof-detail/new-rating/{{professor['id']}}">Add a new rating</button>
    </div>
    <p class="mat-body-1"><b>Name:</b> {{ professor['fullName'] }}</p>
    <p class="mat-body-1"><b>Professor in department:</b> {{ professor['department'] }}</p>

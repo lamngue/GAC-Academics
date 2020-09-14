@@ -7,7 +7,7 @@ import { switchMap } from 'rxjs/operators';
 @Injectable({ providedIn: 'root' })
 export class ProfessorService {
 
-    private _baseUrl = "http://localhost:8080/api/v1/professor/";
+    private _baseUrl = "http://localhost:8080/api/professor/";
     constructor(private http: HttpClient) {}
 
     getProfessors(): Observable<Professor[]> {

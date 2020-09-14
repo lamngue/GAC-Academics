@@ -1,0 +1,8 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+mat-sidenav-content {
+  min-height: 90vh !important;
+  min-width: 90vw !important;
+}

@@ -6,6 +6,9 @@
 */
 {
   "files": [],
+  "compilerOptions": {
+    "types": ["gapi", "gapi.auth2"]
+  },
   "references": [
     {
       "path": "./tsconfig.app.json"

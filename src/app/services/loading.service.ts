@@ -5,21 +5,14 @@ import { LoadingDialogContentComponent } from 'src/app/loading-dialog-content/lo
 @Injectable()
 export class LoadingService {
 
-  loading = false;
   dialogRef;
   constructor(public dialog: MatDialog) { }
 
   setLoading(loading: boolean) {
-    this.loading = loading;
-    if (this.loading) {
-      this.dialogRef = this.dialog.open(LoadingDialogContentComponent);
-    }
-  }
-
-  unSetLoading(loading: boolean) {
-    this.loading = loading;
-    if (!this.loading) {
-      this.dialogRef.close();
+    if (loading) {
+        this.dialogRef = this.dialog.open(LoadingDialogContentComponent);
+    } else {
+        this.dialogRef.close();
     }
   }
 }
