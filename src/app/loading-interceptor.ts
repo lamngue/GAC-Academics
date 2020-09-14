@@ -14,6 +14,7 @@ export class LoadingInterceptor implements HttpInterceptor {
     constructor(private loadingService: LoadingService) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler) {
+        this.totalRequests = 0;
         this.totalRequests++;
         this.loadingService.setLoading(true);
 
@@ -21,7 +22,7 @@ export class LoadingInterceptor implements HttpInterceptor {
             finalize(() => {
                 this.totalRequests--;
                 if (this.totalRequests === 0) {
-                    this.loadingService.unSetLoading(false);
+                    this.loadingService.setLoading(false);
                 }
             })
         );

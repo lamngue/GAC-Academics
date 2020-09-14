@@ -28,7 +28,9 @@ import { AddNewRatingComponent } from './profs-rating/add-new-rating/add-new-rat
 import { LoadingInterceptor } from 'src/app/loading-interceptor';
 import { MatDialogModule } from '@angular/material/dialog';
 import { LoadingDialogContentComponent } from './loading-dialog-content/loading-dialog-content.component';
-
+import { LoginComponent } from './login/login.component';
+import { CallbackComponent } from './callback/callback.component';
+import { AuthHeaderInterceptor } from './auth-header.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +41,8 @@ import { LoadingDialogContentComponent } from './loading-dialog-content/loading-
     ProfDetailComponent,
     AddNewRatingComponent,
     LoadingDialogContentComponent,
+    LoginComponent,
+    CallbackComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,7 +64,20 @@ import { LoadingDialogContentComponent } from './loading-dialog-content/loading-
     MatListModule,
     HttpClientModule,
   ],
-  providers: [ProfessorService, LoadingService, { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true }],
+  providers: [
+    ProfessorService,
+    LoadingService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthHeaderInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
