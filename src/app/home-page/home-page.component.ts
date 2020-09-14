@@ -3,8 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { SecurityService } from '../services/security.service';
-import { ActivatedRoute } from '@angular/router';
-
+import { faGraduationCap } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
@@ -12,6 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class HomePageComponent implements OnInit {
   name: string;
+  faGraduationCap = faGraduationCap;
   constructor(
     private http: HttpClient,
     private securityService: SecurityService

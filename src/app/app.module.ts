@@ -27,6 +27,7 @@ import { ProfDetailComponent } from './profs-rating/prof-detail/prof-detail.comp
 import { AddNewRatingComponent } from './profs-rating/add-new-rating/add-new-rating.component';
 import { LoadingInterceptor } from 'src/app/loading-interceptor';
 import { MatDialogModule } from '@angular/material/dialog';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LoadingDialogContentComponent } from './loading-dialog-content/loading-dialog-content.component';
 import { LoginComponent } from './login/login.component';
 import { CallbackComponent } from './callback/callback.component';
@@ -55,6 +56,7 @@ import { AuthHeaderInterceptor } from './auth-header.interceptor';
     MatSidenavModule,
     MatDialogModule,
     MatProgressSpinnerModule,
+    FontAwesomeModule,
     MatSelectModule,
     FlexLayoutModule,
     MatFormFieldModule,
