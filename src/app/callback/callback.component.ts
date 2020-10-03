@@ -13,10 +13,14 @@ export class CallbackComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(p => {
-      this.securityService.fetchToken(p.code, p.state).subscribe(data => {
-        this.securityService.updateToken(data.accessToken);
-        this.router.navigate(['/home-page']);
-      })
+      if (p.hd === "gustavus.edu") {
+        this.securityService.fetchToken(p.code, p.state).subscribe(data => {
+          this.securityService.updateToken(data.accessToken);
+          this.router.navigate(['/home-page']);
+        })
+      } else {
+        this.router.navigate(['/error'], { state: { errorMsg: "Sorry, you must login with an email from gustavus.edu domain. Please try again. Redirecting you to login."} });
+      }
     });
   }
 

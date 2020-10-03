@@ -11,12 +11,11 @@
             <span class="mat-subheading-2">GAC Academics</span>
         </a>
         <span class="example-spacer"></span>
-        <span>Welcome, {{name}}!</span>
-        <span class="example-spacer"></span>
-
             <div fxShow="true" fxHide.lt-md="true">
+                <span>Welcome, {{name}}!</span>
+                <span class="example-spacer"></span>
                 <a mat-button routerLink="/home-page/profs-rating"><span>Profs Rating</span></a>
-                <a mat-button routerLink="/home-page/classes-performance"><span>Classes Suggestions</span></a>
+                <a mat-button routerLink="/home-page/semester-planning" [queryParams]="{ studentId: studentId }"><span>Semester planning</span></a>
                 <a mat-button (click)="logout()"><span>Log out</span></a>
             </div>
   
@@ -24,10 +23,9 @@
     </mat-toolbar>
     <mat-sidenav-container fxFlexFill class="example-container">
         <mat-sidenav color="primary" #sidenav fxLayout="column" mode="over" opened="false" fxHide.gt-sm="true">
-            <span>Welcome, {{name}}!</span>
             <div fxLayout="column">
                 <a mat-button routerLink="/home-page/profs-rating">Profs Rating</a>
-                <a mat-button routerLink="/home-page/classes-performance">Classes Performance</a>
+                <a mat-button routerLink="/home-page/semester-planning" [queryParams]="{ studentId: studentId }">Semester planning</a>
             </div>
         </mat-sidenav>
         <mat-sidenav-content fxFlexFill>

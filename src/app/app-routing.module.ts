@@ -6,12 +6,17 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { ProfDetailComponent } from './profs-rating/prof-detail/prof-detail.component';
 import { AddNewRatingComponent } from './profs-rating/add-new-rating/add-new-rating.component';
 import { AuthGuard } from './auth.guard';
+import { StudentGuard } from './semester-planning/student.guard';
 import { LoginComponent } from './login/login.component';
 import { CallbackComponent } from './callback/callback.component';
+import { ErrorComponent } from './error/error.component';
+import { SemesterPlanningComponent } from './semester-planning/semester-planning.component';
+import { ClassesPlanningComponent } from './semester-planning/classes-planning/classes-planning.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'callback', component: CallbackComponent },
+  { path: 'error', component: ErrorComponent },
   {
     path: 'home-page',
     component: HomePageComponent,
@@ -22,8 +27,13 @@ const routes: Routes = [
         canActivate: [AuthGuard],
       },
       {
-        path: 'classes-performance',
-        component: ClassesPerformanceComponent,
+        path: 'semester-planning',
+        component: SemesterPlanningComponent,
+        canActivate: [AuthGuard, StudentGuard],
+      },
+      {
+        path: 'semester-planning/:id',
+        component: ClassesPlanningComponent,
         canActivate: [AuthGuard],
       },
       {
