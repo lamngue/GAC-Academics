@@ -21,9 +21,13 @@ export class SecurityService {
 
   logout() {
     this.http.post(this.baseUrl + '/logout', this.getToken()).subscribe(() => {
-      localStorage.removeItem(this.tokenKey);
+      this.removeToken();
       this.router.navigate(['/login']);
     });
+  }
+
+  removeToken() {
+    localStorage.removeItem(this.tokenKey);
   }
 
   updateToken(token) {

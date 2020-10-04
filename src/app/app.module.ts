@@ -27,10 +27,26 @@ import { ProfDetailComponent } from './profs-rating/prof-detail/prof-detail.comp
 import { AddNewRatingComponent } from './profs-rating/add-new-rating/add-new-rating.component';
 import { LoadingInterceptor } from 'src/app/loading-interceptor';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import {
+  MAT_MOMENT_DATE_FORMATS,
+  MomentDateAdapter,
+} from '@angular/material-moment-adapter';
+import {
+  DateAdapter,
+  MAT_DATE_FORMATS,
+  MAT_DATE_LOCALE,
+} from '@angular/material/core';
 import { LoadingDialogContentComponent } from './loading-dialog-content/loading-dialog-content.component';
 import { LoginComponent } from './login/login.component';
 import { CallbackComponent } from './callback/callback.component';
 import { AuthHeaderInterceptor } from './auth-header.interceptor';
+import { ErrorComponent } from './error/error.component';
+import { SemesterPlanningComponent } from './semester-planning/semester-planning.component';
+import { ClassesPlanningComponent } from './semester-planning/classes-planning/classes-planning.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,6 +59,9 @@ import { AuthHeaderInterceptor } from './auth-header.interceptor';
     LoadingDialogContentComponent,
     LoginComponent,
     CallbackComponent,
+    ErrorComponent,
+    SemesterPlanningComponent,
+    ClassesPlanningComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,6 +74,10 @@ import { AuthHeaderInterceptor } from './auth-header.interceptor';
     MatSidenavModule,
     MatDialogModule,
     MatProgressSpinnerModule,
+    MatGridListModule,
+    FontAwesomeModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     MatSelectModule,
     FlexLayoutModule,
     MatFormFieldModule,
@@ -77,6 +100,12 @@ import { AuthHeaderInterceptor } from './auth-header.interceptor';
       useClass: LoadingInterceptor,
       multi: true,
     },
+    {
+      provide: DateAdapter,
+      useClass: MomentDateAdapter,
+      deps: [MAT_DATE_LOCALE],
+    },
+    { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },
   ],
   bootstrap: [AppComponent],
 })

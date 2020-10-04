@@ -15,6 +15,11 @@
     margin-top: 5vw;
 }
 
+.content { 
+    margin-left: 5vw;
+    margin-top: 2vh;
+}
+
 .rating-detail {
     margin-bottom: 10px;
     width: 450px;

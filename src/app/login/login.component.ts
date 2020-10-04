@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SecurityService } from '../services/security.service';
+import { faGraduationCap } from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,9 +10,13 @@ import { SecurityService } from '../services/security.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private securityService: SecurityService) { }
+  faGraduationCap = faGraduationCap;
+  constructor(private securityService: SecurityService, private router: Router) { }
 
   ngOnInit(): void {
+    if (this.securityService.isLoggedIn()) {
+      this.router.navigate(['/home-page']);
+    }
   }
 
   login() {

@@ -1,6 +1,7 @@
 export interface Professor {
     id: string,
+    fullName: string,
     department: string,
-    overallRatings: string,
+    imageLink: string,
     ratings: Object[]
 }
