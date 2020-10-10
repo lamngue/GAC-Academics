@@ -47,13 +47,14 @@ export class SemesterPlanningComponent implements OnInit {
     this.route
       .queryParams
       .subscribe(params => {
-        // Defaults to 0 if no query param provided.
+        // Defaults to '' if no query param provided.
         this.studentId = params['studentId'] || '';
       });
   }
 
   onSubmit(student: Student) {
     student['id'] = this.studentId;
+    student['classesPlan'] = [];
     this.studentService.postStudent(student).subscribe((s) => {
       this.router.navigate(['home-page/semester-planning/' + s.id]);
     });

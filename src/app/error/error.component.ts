@@ -19,9 +19,9 @@ export class ErrorComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     if (this.errorMsg) {
-      this.loadingService.setLoading(true);
+      this.loadingService.show();
       setTimeout(() => {
-        this.loadingService.setLoading(false);
+        this.loadingService.hide();
         this.router.navigate(['/login']);
       }, 3000);
     }

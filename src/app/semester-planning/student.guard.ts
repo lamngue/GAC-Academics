@@ -4,26 +4,26 @@ import { Observable } from 'rxjs';
 import { StudentService } from '../services/student.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class StudentGuard implements CanActivate {
-
-  constructor(private studentService: StudentService, private router: Router) {
-
-  }
+  constructor(private studentService: StudentService, private router: Router) {}
 
   canActivate(
     next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    
+    state: RouterStateSnapshot
+  ):
+    | Observable<boolean | UrlTree>
+    | Promise<boolean | UrlTree>
+    | boolean
+    | UrlTree {
     const studentId = next.queryParams.studentId;
-    if (studentId) {
-      this.router.navigate([
-        'home-page/semester-planning/' + studentId,
-      ]);
-      return false;
-    }
+    this.studentService.getStudent(studentId).subscribe(s => {
+      if (s) {
+        this.router.navigate(['home-page/semester-planning/' + studentId]);
+        return false;
+      }
+    });
     return true;
   }
-  
 }

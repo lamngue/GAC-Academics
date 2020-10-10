@@ -13,6 +13,24 @@
             </mat-form-field>
             <br/>
             <mat-form-field class="full-width">
+                <mat-label>Grade received</mat-label>
+                <input matInput formControlName="gradeReceived" [errorStateMatcher]="matcher" placeholder="A">
+                <mat-hint>Enter a grade you received in the class</mat-hint>
+                <mat-error *ngIf="commentForm.get('gradeReceived').hasError('required')">
+                    Grade received is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+            <br />
+            <mat-form-field class="full-width">
+                <mat-label>Average GPA</mat-label>
+                <input matInput formControlName="currentGPA" [errorStateMatcher]="matcher" placeholder="3,5">
+                <mat-hint>Enter your GPA</mat-hint>
+                <mat-error *ngIf="commentForm.get('currentGPA').hasError('required')">
+                    GPA is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+            <br />
+            <mat-form-field class="full-width">
                 <mat-label>Leave a Rating</mat-label>
                 <mat-select formControlName="rating" [errorStateMatcher]="matcher">
                     <mat-option value="1">1 - I wouldn't recommend this prof</mat-option>
