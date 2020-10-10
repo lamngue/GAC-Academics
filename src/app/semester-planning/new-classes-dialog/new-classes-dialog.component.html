@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>Modifying classes for {{data.semester}}</h1>
+<div mat-dialog-content>
+    <p>Please type the name of your classes, among with the course code.</p>
+    <mat-form-field>
+        <mat-label>Class Name here</mat-label>
+        <input matInput [(ngModel)]="data.course">
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Save</button>
+</div>

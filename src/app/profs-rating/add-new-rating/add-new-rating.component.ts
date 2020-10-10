@@ -28,11 +28,13 @@ export class AddNewRatingComponent implements OnInit {
     private formBuilder: FormBuilder,
     private professorService: ProfessorService,
     private location: Location) { 
-    this.commentForm = this.formBuilder.group({
-      course: ['', Validators.required],
-      rating: ['', Validators.required],
-      description: ['', Validators.required]
-    });
+      this.commentForm = this.formBuilder.group({
+        course: ['', Validators.required],
+        rating: ['', Validators.required],
+        description: ['', Validators.required],
+        currentGPA: ['', Validators.required],
+        gradeReceived: ['', Validators.required]
+      });
     }
 
   ngOnInit(): void {

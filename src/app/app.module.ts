@@ -31,6 +31,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatTableModule } from '@angular/material/table';
+
 import {
   MAT_MOMENT_DATE_FORMATS,
   MomentDateAdapter,
@@ -47,6 +49,7 @@ import { AuthHeaderInterceptor } from './auth-header.interceptor';
 import { ErrorComponent } from './error/error.component';
 import { SemesterPlanningComponent } from './semester-planning/semester-planning.component';
 import { ClassesPlanningComponent } from './semester-planning/classes-planning/classes-planning.component';
+import { NewClassesDialogComponent } from './semester-planning/new-classes-dialog/new-classes-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,6 +65,7 @@ import { ClassesPlanningComponent } from './semester-planning/classes-planning/c
     ErrorComponent,
     SemesterPlanningComponent,
     ClassesPlanningComponent,
+    NewClassesDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -76,6 +80,7 @@ import { ClassesPlanningComponent } from './semester-planning/classes-planning/c
     MatProgressSpinnerModule,
     MatGridListModule,
     FontAwesomeModule,
+    MatTableModule,
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,

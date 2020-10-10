@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
+import { LoadingService } from '../services/loading.service';
 
 @Component({
   selector: 'app-loading-dialog-content',
@@ -6,8 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./loading-dialog-content.component.css']
 })
 export class LoadingDialogContentComponent implements OnInit {
+  color = 'primary';
+  mode = 'indeterminate';
+  value = 50;
+  isLoading: Subject<boolean> = this.loadingService.isLoading;
 
-  constructor() { }
+  constructor(private loadingService: LoadingService) { }
 
   ngOnInit(): void {
   }
