@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { ProfessorService } from '../services/professor.service';
 @Component({
   selector: 'app-profs-rating',
@@ -8,10 +8,12 @@ import { ProfessorService } from '../services/professor.service';
 export class ProfsRatingComponent implements OnInit {
   opened: boolean;
   profName = '';
-  constructor(private _professorService: ProfessorService) {}
   professors = [];
+  currentItemsToShow = [];
+  defaultRecords: any = 5;
   departments = [];
   dept: string;
+  constructor(private _professorService: ProfessorService) {}
 
   ngOnInit(): void {
     this._professorService.getProfessors().subscribe((data) => {
@@ -22,20 +24,21 @@ export class ProfsRatingComponent implements OnInit {
         }
       });
       this.departments.push('All departments');
+      this.currentItemsToShow = this.professors.slice(0, this.defaultRecords);
     });
   }
 
-  processedProf(dept: string) {
+   processedProf(dept: string) {
     if (this.profName == '') {
       if (dept === "All departments" || !dept) {
-        return this.professors;
+        return this.currentItemsToShow;
       }
-      return this.professors.filter(prof => prof['department'] === dept);
+      return this.currentItemsToShow.filter(prof => prof['department'] === dept);
     } else {
       if (dept !== "All departments" && dept) {
-        return this.professors.filter(prof => prof['department'] === dept).filter(prof => prof['fullName'].toLowerCase().includes(this.profName));
+        return this.currentItemsToShow.filter(prof => prof['department'] === dept).filter(prof => prof['fullName'].toLowerCase().includes(this.profName));
       }
-      return this.professors.filter(prof => prof['fullName'].toLowerCase().includes(this.profName));
+      return this.currentItemsToShow.filter(prof => prof['fullName'].toLowerCase().includes(this.profName));
     } 
   }
 
@@ -48,4 +51,9 @@ export class ProfsRatingComponent implements OnInit {
     ratings.forEach(rating => overallRating += parseInt(rating['rating']));
     return Math.round((overallRating/ratings.length)*100)/100;
   }
+
+  onPageChange($event) {
+    this.currentItemsToShow = this.professors.slice($event.pageIndex * $event.pageSize, $event.pageIndex * $event.pageSize + $event.pageSize);
+  }
+
 }
