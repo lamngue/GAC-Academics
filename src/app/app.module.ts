@@ -18,6 +18,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DepartmentsComponent } from './profs-rating/departments/departments.component';
@@ -82,6 +83,7 @@ import { NewClassesDialogComponent } from './semester-planning/new-classes-dialo
     FontAwesomeModule,
     MatTableModule,
     MatDatepickerModule,
+    MatPaginatorModule,
     MatNativeDateModule,
     MatSelectModule,
     FlexLayoutModule,

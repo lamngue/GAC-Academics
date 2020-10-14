@@ -1,7 +1,5 @@
-.prof-title {
-    position: absolute;
-    left: 5%;
-    top: 10%;
+.new-rating {
+  padding: 3vw;
 }
 
 .prof-rating-form {
@@ -18,11 +16,6 @@
     min-height: 150px;
 }
 
-.rating-rule {
-    position: absolute;
-    right: 5%;
-    top: 10%;
-}
 
 mat-card {
     background-color: #ebebe6 !important;

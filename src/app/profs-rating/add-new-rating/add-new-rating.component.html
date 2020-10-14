@@ -1,17 +1,18 @@
-<div class="prof-title">
-    <button mat-raised-button (click)="goBack()">Back</button>
-    <p style="margin-top: 10px;" class="mat-headline">Please add a new rating for professor {{ professor['fullName'] }}</p>
+<div class="content new-rating" fxLayout="row" fxLayoutGap="16px" fxLayout.xs="column" fxFlexFill>
+    <div fxFlex="50">
+        <button mat-raised-button (click)="goBack()">Back</button>
+        <p style="margin-top: 10px;" class="mat-headline">Please add a new rating for professor {{ professor['fullName'] }}
+        </p>
         <form (ngSubmit)="onSubmit(commentForm.value)" [formGroup]="commentForm" class="prof-rating-form">
             <mat-form-field class="full-width">
                 <mat-label>Course code</mat-label>
-                <input matInput formControlName="course" [errorStateMatcher]="matcher"
-                    placeholder="Ex. MCS-177">
+                <input matInput formControlName="course" [errorStateMatcher]="matcher" placeholder="Ex. MCS-177">
                 <mat-hint>Enter a course that you took with this professor</mat-hint>
                 <mat-error *ngIf="commentForm.get('course').hasError('required')">
                     Course code is <strong>required</strong>
                 </mat-error>
             </mat-form-field>
-            <br/>
+            <br />
             <mat-form-field class="full-width">
                 <mat-label>Grade received</mat-label>
                 <input matInput formControlName="gradeReceived" [errorStateMatcher]="matcher" placeholder="A">
@@ -45,33 +46,35 @@
             </mat-form-field>
             <mat-form-field class="full-width">
                 <mat-label>Leave a comment</mat-label>
-                <textarea formControlName="description" class="prof-comment" [errorStateMatcher]="matcher" matInput placeholder="Ex. It makes me feel..."></textarea>
+                <textarea formControlName="description" class="prof-comment" [errorStateMatcher]="matcher" matInput
+                    placeholder="Ex. It makes me feel..."></textarea>
                 <mat-error *ngIf="commentForm.get('description').hasError('required')">
                     Comment is <strong>required</strong>
                 </mat-error>
             </mat-form-field>
             <button mat-raised-button color="primary" type="submit">Submit</button>
         </form>
-    
-</div>
-<div class="rating-rule">
-<mat-card>
-    <mat-card-title>Some rule(s) regarding rating your professor</mat-card-title>
-    <mat-card-subtitle>Do(s):</mat-card-subtitle>
-    <mat-card-content>
-        <ol>
-            <li>Check your comment for grammatical errors</li>
-            <li>Course code must be the right code that's on the registra catalog</li>
-            <li>Be descriptive about professor's teaching, and how it impacts your learning</li>
-        </ol>
-    </mat-card-content>
-    <mat-card-subtitle>Don't(s):</mat-card-subtitle>
-    <mat-card-content>
-        <ol>
-            <li>Name calling your prof</li>
-            <li>Have disrespectful comment using profanity</li>
-        </ol>
-    </mat-card-content>
-</mat-card>
 
+    </div>
+    <div fxFlex="50">
+        <mat-card>
+            <mat-card-title>Some rule(s) regarding rating your professor</mat-card-title>
+            <mat-card-subtitle>Do(s):</mat-card-subtitle>
+            <mat-card-content>
+                <ol>
+                    <li>Check your comment for grammatical errors</li>
+                    <li>Course code must be the right code that's on the registra catalog</li>
+                    <li>Be descriptive about professor's teaching, and how it impacts your learning</li>
+                </ol>
+            </mat-card-content>
+            <mat-card-subtitle>Don't(s):</mat-card-subtitle>
+            <mat-card-content>
+                <ol>
+                    <li>Name calling your prof</li>
+                    <li>Have disrespectful comment using profanity</li>
+                </ol>
+            </mat-card-content>
+        </mat-card>
+
+    </div>
 </div>

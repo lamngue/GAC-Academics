@@ -15,6 +15,7 @@ import { NewClassesDialogComponent } from '../new-classes-dialog/new-classes-dia
 export class ClassesPlanningComponent implements OnInit, AfterViewInit {
   studentId: string;
   startYear: number;
+  private MAXIMUM_CLASSES_SEM = 6;
   endYear: number;
   classes: any[];
   courses: string[] = [];
@@ -104,9 +105,10 @@ export class ClassesPlanningComponent implements OnInit, AfterViewInit {
   }
 
   openDialog(sem: string): void {
+    const numberOfClasses = this.classes.find(c => c['semester'] === sem)['course'].length;
     const dialogRef = this.dialog.open(NewClassesDialogComponent, {
       width: '400px',
-      data: {semester: sem, course: ''}
+      data: numberOfClasses > this.MAXIMUM_CLASSES_SEM ? { semester: sem, numberOfClasses } : { semester: sem, course: '' }
     });
 
     dialogRef.afterClosed().subscribe((result) => {
