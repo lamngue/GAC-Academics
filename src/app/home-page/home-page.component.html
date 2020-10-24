@@ -26,10 +26,14 @@
             <div fxLayout="column">
                 <a mat-button routerLink="/home-page/profs-rating">Profs Rating</a>
                 <a mat-button routerLink="/home-page/semester-planning" [queryParams]="{ studentId: studentId }">Semester planning</a>
+                <a mat-button (click)="logout()"><span>Log out</span></a>
             </div>
         </mat-sidenav>
+        <div>
+        </div>
         <mat-sidenav-content fxFlexFill>
             <router-outlet></router-outlet>
         </mat-sidenav-content>
     </mat-sidenav-container>
+
 </div>

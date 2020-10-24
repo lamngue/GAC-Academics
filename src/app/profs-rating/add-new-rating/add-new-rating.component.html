@@ -14,9 +14,19 @@
             </mat-form-field>
             <br />
             <mat-form-field class="full-width">
-                <mat-label>Grade received</mat-label>
-                <input matInput formControlName="gradeReceived" [errorStateMatcher]="matcher" placeholder="A">
-                <mat-hint>Enter a grade you received in the class</mat-hint>
+                <mat-label>Grade Received</mat-label>
+                <mat-select formControlName="gradeReceived" [errorStateMatcher]="matcher">
+                    <mat-option value="A">A</mat-option>
+                    <mat-option value="A-">A-</mat-option>
+                    <mat-option value="B+">B+</mat-option>
+                    <mat-option value="B">B</mat-option>
+                    <mat-option value="B-">B-</mat-option>
+                    <mat-option value="C+">C+</mat-option>
+                    <mat-option value="C">C</mat-option>
+                    <mat-option value="C-">C-</mat-option>
+                    <mat-option value="D">D</mat-option>
+                    <mat-option value="F">I Failed :(</mat-option>
+                </mat-select>
                 <mat-error *ngIf="commentForm.get('gradeReceived').hasError('required')">
                     Grade received is <strong>required</strong>
                 </mat-error>
@@ -24,7 +34,7 @@
             <br />
             <mat-form-field class="full-width">
                 <mat-label>Average GPA</mat-label>
-                <input matInput formControlName="currentGPA" [errorStateMatcher]="matcher" placeholder="3,5">
+                <input type="number" step="0.01" min="1" max="4" matInput formControlName="currentGPA" [errorStateMatcher]="matcher" placeholder="3.5">
                 <mat-hint>Enter your GPA</mat-hint>
                 <mat-error *ngIf="commentForm.get('currentGPA').hasError('required')">
                     GPA is <strong>required</strong>

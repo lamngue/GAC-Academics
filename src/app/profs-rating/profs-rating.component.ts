@@ -1,4 +1,5 @@
 import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Professor } from '../professor';
 import { ProfessorService } from '../services/professor.service';
 @Component({
   selector: 'app-profs-rating',
@@ -46,7 +47,17 @@ export class ProfsRatingComponent implements OnInit {
     this.dept = dept;
   };
 
+  getProfessorsLength(professors) {
+    if (!this.dept || this.dept === "All departments") {
+      return this.professors.length;
+    }
+    return professors.filter(prof => prof['department'] === this.dept).length;
+  }
+
   getProfOverallRating(ratings: Object[]) {
+    if (!ratings || ratings.length === 0) {
+      return "The ratings for this professor is not available";
+    }
     let overallRating = 0;
     ratings.forEach(rating => overallRating += parseInt(rating['rating']));
     return Math.round((overallRating/ratings.length)*100)/100;

@@ -36,12 +36,12 @@ export class StudentService {
     return this.http.post(environment.baseUrl + "/api/student", student);
   }
 
-  addClasses(id: string, classes): Observable<any> {
+  addClasses(id: string, sem: string, classes): Observable<any> {
     // get the student, add classes to them, and make a put request
     return this.getStudent(id).pipe(
       switchMap(student => {
-        let semester = student['classesPlan'].find(c => c['semester'] === classes[0]['semester']);
-        let semesterIdx = student['classesPlan'].findIndex(c => c['semester'] === classes[0]['semester']);
+        let semester = student['classesPlan'].find(c => c['semester'] === sem);
+        let semesterIdx = student['classesPlan'].findIndex(c => c['semester'] === sem);
         if (!semester || student['classesPlan'].length === 0) {
           student['classesPlan'].push(classes[0]);
         } else if (semester) {

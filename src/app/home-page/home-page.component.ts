@@ -5,7 +5,6 @@ import { Observable } from 'rxjs';
 import { SecurityService } from '../services/security.service';
 import { faGraduationCap } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
-import { StudentService } from '../services/student.service';
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
@@ -18,6 +17,7 @@ export class HomePageComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private securityService: SecurityService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -32,11 +32,15 @@ export class HomePageComponent implements OnInit {
   }
 
   getUserInfo(): Observable<any> {
-    console.log(this.securityService.getToken());
     return this.http.get(environment.baseUrl + '/v1/home');
   }
 
   logout() {
-    this.securityService.logout();
+    this.securityService.logout().subscribe(() => {
+      this.securityService.removeToken();
+      this.name = '';
+      this.setStudentId(null);
+      this.router.navigate(['/login']);
+    });;
   }
 }
