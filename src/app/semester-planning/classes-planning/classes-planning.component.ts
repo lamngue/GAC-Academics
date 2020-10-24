@@ -105,7 +105,8 @@ export class ClassesPlanningComponent implements OnInit, AfterViewInit {
   }
 
   openDialog(sem: string): void {
-    const numberOfClasses = this.classes.find(c => c['semester'] === sem)['course'].length;
+    const semesterCourses = this.classes.find(c => c['semester'] === sem);
+    const numberOfClasses = semesterCourses ? semesterCourses['course'].length : 0;
     const dialogRef = this.dialog.open(NewClassesDialogComponent, {
       width: '400px',
       data: numberOfClasses > this.MAXIMUM_CLASSES_SEM ? { semester: sem, numberOfClasses } : { semester: sem, course: '' }
@@ -115,7 +116,7 @@ export class ClassesPlanningComponent implements OnInit, AfterViewInit {
       if (result) {
         result['course'] = [result['course']];       
         this.courses.push(result);    
-        this.studentService.addClasses(this.studentId, this.courses).subscribe(() => {
+        this.studentService.addClasses(this.studentId, sem, this.courses).subscribe(() => {
            this.courses = [];
           this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
             this.router.navigate(["home-page/semester-planning/" + this.studentId]);
@@ -127,10 +128,23 @@ export class ClassesPlanningComponent implements OnInit, AfterViewInit {
   }
 
   deleteClass(sem: string, c: string) {
-    this.studentService.deleteClasses(this.studentId, c, sem).subscribe(() => {
-      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-        this.router.navigate(["home-page/semester-planning/" + this.studentId]);
-      });
+    const dialogRef = this.dialog.open(NewClassesDialogComponent, {
+      width: '400px',
+      data: { deleteMsg: "Are you sure you want to delete " + c }
+    });
+
+    dialogRef.afterClosed().subscribe((data) => {
+      if (data) {
+        this.studentService.deleteClasses(this.studentId, c, sem).subscribe(() => {
+          this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+            this.router.navigate(["home-page/semester-planning/" + this.studentId]);
+          });
+        })
+      }
     })
+  }
+
+  addNewSemester() {
+
   }
 }

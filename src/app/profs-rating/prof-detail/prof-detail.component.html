@@ -10,7 +10,7 @@
         <p class="mat-body-1"><b>Name:</b> {{ professor['fullName'] }}</p>
         <p class="mat-body-1"><b>Professor in department:</b> {{ professor['department'] }}</p>
         <p class="mat-body-1"><b>Overall rating:</b>
-            {{ professor['ratings'] ? getProfOverallRating(professor['ratings']) + ' stars' : 'This professor hasn\'t gotten any rating yet'}}
+            {{ professor['ratings'] && professor['ratings'].length > 0 ? getProfOverallRating(professor['ratings']) + ' stars' : 'This professor hasn\'t gotten any rating yet'}}
         </p>
         <div *ngIf="professor['ratings']">
             <p class="mat-body-1"><b>Details:</b></p>

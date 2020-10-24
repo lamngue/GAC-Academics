@@ -19,11 +19,8 @@ export class SecurityService {
     window.open(this.baseUrl + this.authorizeEndPoint, '_self');
   }
 
-  logout() {
-    this.http.post(this.baseUrl + '/logout', this.getToken()).subscribe(() => {
-      this.removeToken();
-      this.router.navigate(['/login']);
-    });
+  logout(): Observable<any> {
+    return this.http.post(this.baseUrl + '/logout', this.getToken());
   }
 
   removeToken() {

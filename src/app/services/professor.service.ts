@@ -23,25 +23,14 @@ export class ProfessorService {
     }
 
     addProfessorRating(id: string, rating: Object): Observable<any> {
-        // get the professor, then modify the ratings of them, and make a put request
-        return this.getProfessor(id).pipe(
-            switchMap(professor => {
-                if (!professor['ratings']) {
-                    professor['ratings'] = [];
-                }
-                let ratings = professor['ratings'];
-                ratings.push(rating);
-                professor['ratings'] = ratings;
-                return this.http.put<void>(
-                  environment.baseUrl + '/api/professor/' + id,
-                  professor,
-                  {
-                    headers: new HttpHeaders({
-                      'content-type': 'application/json',
-                    }),
-                  }
-                );
-            })
-        )
+        return this.http.put<void>(
+          environment.baseUrl + '/api/professor/' + id,
+          rating,
+          {
+            headers: new HttpHeaders({
+              'content-type': 'application/json',
+          }),
+        }
+      );
     }
 }
