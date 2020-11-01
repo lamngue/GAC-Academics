@@ -43,8 +43,4 @@ export class HomePageComponent implements OnInit {
       this.router.navigate(['/login']);
     });;
   }
-
-  getUrl() {
-    return "url('https://previews.123rf.com/images/bondd/bondd1808/bondd180800536/106409976-back-to-school-background-with-bright-accessories-supplies-for-school-and-study-pen-pencils-markers-.jpg')";
-  }
 }
