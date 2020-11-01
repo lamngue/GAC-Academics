@@ -15,6 +15,7 @@ export class CallbackComponent implements OnInit {
     this.route.queryParams.subscribe(p => {
       if (p.hd === "gustavus.edu") {
         this.securityService.fetchToken(p.code, p.state).subscribe(data => {
+          console.log(data.accessToken);
           this.securityService.updateToken(data.accessToken);
           this.router.navigate(['/home-page']);
         })

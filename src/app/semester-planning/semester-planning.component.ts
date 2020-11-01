@@ -55,6 +55,9 @@ export class SemesterPlanningComponent implements OnInit {
   onSubmit(student: Student) {
     student['id'] = this.studentId;
     student['classesPlan'] = [];
+    student['startDate'] = moment(student['startDate']).format("MM/DD/YYYY");
+    student['endDate'] = moment(student['endDate']).format("MM/DD/YYYY");
+    console.log(student);
     this.studentService.postStudent(student).subscribe((s) => {
       this.router.navigate(['home-page/semester-planning/' + s.id]);
     });

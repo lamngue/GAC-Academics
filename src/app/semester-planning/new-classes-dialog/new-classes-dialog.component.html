@@ -26,3 +26,10 @@
         <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Yes</button>
     </div>
 </div>
+<div *ngIf="data.semOverflowMsg && !data.deleteMsg && !data.course && !data.numberOfClasses">
+    <h1>Semesters exceed maximum</h1>
+    {{ data.semOverflowMsg }}
+    <div mat-dialog-actions>
+        <button mat-button (click)="onNoClick()">Cancel</button>
+    </div>
+</div>
