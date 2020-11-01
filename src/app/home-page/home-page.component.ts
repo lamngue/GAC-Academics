@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { SecurityService } from '../services/security.service';
 import { faGraduationCap } from '@fortawesome/free-solid-svg-icons';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
@@ -17,7 +17,8 @@ export class HomePageComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private securityService: SecurityService,
-    private router: Router
+    private router: Router,
+    public route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -39,8 +40,11 @@ export class HomePageComponent implements OnInit {
     this.securityService.logout().subscribe(() => {
       this.securityService.removeToken();
       this.name = '';
-      this.setStudentId(null);
       this.router.navigate(['/login']);
     });;
+  }
+
+  getUrl() {
+    return "url('https://previews.123rf.com/images/bondd/bondd1808/bondd180800536/106409976-back-to-school-background-with-bright-accessories-supplies-for-school-and-study-pen-pencils-markers-.jpg')";
   }
 }

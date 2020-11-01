@@ -11,7 +11,7 @@ export class ProfsRatingComponent implements OnInit {
   profName = '';
   professors = [];
   currentItemsToShow = [];
-  defaultRecords: any = 5;
+  defaultRecords: any = 25;
   departments = [];
   dept: string;
   constructor(private _professorService: ProfessorService) {}

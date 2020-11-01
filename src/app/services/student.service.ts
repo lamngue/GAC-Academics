@@ -4,6 +4,9 @@ import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { Student } from "src/app/student";
 import { environment } from 'src/environments/environment';
+import * as _moment from 'moment';
+const moment = _moment;
+
 @Injectable({
   providedIn: 'root'
 })
@@ -79,5 +82,34 @@ export class StudentService {
         )
       })
     );
+  }
+
+  addNewSemester(id: string): Observable<any> {
+    return this.getStudent(id).pipe(
+      switchMap(student => {
+        let gradDate = student.endDate;
+        let gradMonth = moment(gradDate).month() + 1;
+        let gradYear = moment(gradDate).year();
+        if (gradMonth >= 2 && gradMonth <= 5) {
+          gradMonth += 7;
+        } else if (gradMonth >= 9 && gradMonth <= 12) {
+          gradMonth = (gradMonth + 5) % 12;
+          gradYear++;
+        } else if (gradMonth == 1) {
+          gradMonth += 4
+        }
+        gradDate = moment(gradDate).set('month', gradMonth - 1).set('year', gradYear).format("MM/DD/YYYY");
+        student['endDate'] = gradDate;
+        return this.http.put<void>(
+          environment.baseUrl + '/api/student/' + id,
+          student,
+          {
+            headers: new HttpHeaders({
+              'content-type': 'application/json',
+            }),
+          }
+        );
+      })
+    )
   }
 }
