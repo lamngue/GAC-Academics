@@ -25,6 +25,9 @@
             </div>
         </mat-sidenav>
         <mat-sidenav-content fxFlexFill>
+            <div *ngIf="route.children.length === 0">
+                <h2 class="mat-display-1" style="text-align: center; margin-top: 5px;">Please login to see what excites you</h2>
+            </div>
             <router-outlet></router-outlet>
         </mat-sidenav-content>
     </mat-sidenav-container>

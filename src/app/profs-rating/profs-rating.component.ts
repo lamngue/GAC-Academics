@@ -25,16 +25,17 @@ export class ProfsRatingComponent implements OnInit {
         }
       });
       this.departments.push('All departments');
-      this.currentItemsToShow = this.professors.slice(0, this.defaultRecords);
+      this.currentItemsToShow = this.professors;
     });
   }
 
-   processedProf(dept: string) {
+  processedProf(dept: string) {
     if (this.profName == '') {
       if (dept === "All departments" || !dept) {
         return this.currentItemsToShow;
+      } else if (dept && dept !== "All departments") {
+        return this.currentItemsToShow.filter(prof => prof['department'] === dept);
       }
-      return this.currentItemsToShow.filter(prof => prof['department'] === dept);
     } else {
       if (dept !== "All departments" && dept) {
         return this.currentItemsToShow.filter(prof => prof['department'] === dept).filter(prof => prof['fullName'].toLowerCase().includes(this.profName));
@@ -46,14 +47,7 @@ export class ProfsRatingComponent implements OnInit {
   filterProfByDept(dept: string) {
     this.dept = dept;
   };
-
-  getProfessorsLength(professors) {
-    if (!this.dept || this.dept === "All departments") {
-      return this.professors.length;
-    }
-    return professors.filter(prof => prof['department'] === this.dept).length;
-  }
-
+  
   getProfOverallRating(ratings: Object[]) {
     if (!ratings || ratings.length === 0) {
       return "The ratings for this professor is not available";
@@ -62,9 +56,4 @@ export class ProfsRatingComponent implements OnInit {
     ratings.forEach(rating => overallRating += parseInt(rating['rating']));
     return Math.round((overallRating/ratings.length)*100)/100;
   }
-
-  onPageChange($event) {
-    this.currentItemsToShow = this.professors.slice($event.pageIndex * $event.pageSize, $event.pageIndex * $event.pageSize + $event.pageSize);
-  }
-
 }

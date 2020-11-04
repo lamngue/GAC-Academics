@@ -36,10 +36,5 @@
         </mat-card>
       </div>
     </div>
-    <div class="footer">
-      <mat-paginator (page)="onPageChange($event)" [length]="getProfessorsLength(professors)" [pageSize]="25"
-        [pageSizeOptions]="[5, 10, 25, 100]">
-      </mat-paginator>
-    </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
