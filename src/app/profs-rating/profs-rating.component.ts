@@ -25,7 +25,7 @@ export class ProfsRatingComponent implements OnInit {
         }
       });
       this.departments.push('All departments');
-      this.currentItemsToShow = this.professors;
+      this.currentItemsToShow = this.professors.slice(0, this.defaultRecords);
     });
   }
 
@@ -47,7 +47,7 @@ export class ProfsRatingComponent implements OnInit {
   filterProfByDept(dept: string) {
     this.dept = dept;
   };
-  
+
   getProfOverallRating(ratings: Object[]) {
     if (!ratings || ratings.length === 0) {
       return "The ratings for this professor is not available";
@@ -55,5 +55,15 @@ export class ProfsRatingComponent implements OnInit {
     let overallRating = 0;
     ratings.forEach(rating => overallRating += parseInt(rating['rating']));
     return Math.round((overallRating/ratings.length)*100)/100;
+  }
+
+  getProfessorsLength() {
+    if (!this.dept || this.dept === "All departments") {
+      return this.professors.length;
+    }
+  }
+
+  onPageChange($event) {
+    this.currentItemsToShow = this.professors.slice($event.pageIndex * $event.pageSize, $event.pageIndex * $event.pageSize + $event.pageSize);
   }
 }

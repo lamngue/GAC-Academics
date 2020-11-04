@@ -36,5 +36,10 @@
         </mat-card>
       </div>
     </div>
+    <div *ngIf="!this.dept || this.dept === 'All departments'" class="footer">
+      <mat-paginator (page)="onPageChange($event)" [length]="getProfessorsLength()" [pageSize]="25"
+        [pageSizeOptions]="[5, 10, 25, 100]">
+      </mat-paginator>
+    </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
