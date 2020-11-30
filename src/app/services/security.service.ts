@@ -16,7 +16,8 @@ export class SecurityService {
   constructor(private http: HttpClient, private router: Router) { }
 
   login() {
-    window.open(this.baseUrl + this.authorizeEndPoint, '_self');
+    const newWindow = window.open("", "_self");
+    newWindow.location.assign(this.baseUrl + this.authorizeEndPoint);
   }
 
   logout(): Observable<any> {

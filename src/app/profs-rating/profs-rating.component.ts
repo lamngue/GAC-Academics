@@ -14,6 +14,7 @@ export class ProfsRatingComponent implements OnInit {
   defaultRecords: any = 25;
   departments = [];
   dept: string;
+  navigate = false;
   constructor(private _professorService: ProfessorService) {}
 
   ngOnInit(): void {
@@ -32,19 +33,27 @@ export class ProfsRatingComponent implements OnInit {
   processedProf(dept: string) {
     if (this.profName == '') {
       if (dept === "All departments" || !dept) {
+        if (this.navigate) {
+          this.currentItemsToShow = this.professors.slice(0, this.defaultRecords);
+          this.navigate = false;
+        }
         return this.currentItemsToShow;
       } else if (dept && dept !== "All departments") {
-        return this.currentItemsToShow.filter(prof => prof['department'] === dept);
+        return this.professors.filter(prof => prof['department'] === dept);
       }
     } else {
       if (dept !== "All departments" && dept) {
-        return this.currentItemsToShow.filter(prof => prof['department'] === dept).filter(prof => prof['fullName'].toLowerCase().includes(this.profName));
+        return this.professors.filter(prof => prof['department'] === dept).filter(prof => prof['fullName'].toLowerCase().includes(this.profName.toLowerCase()));
+      } else if (this.navigate) {
+        this.currentItemsToShow = this.professors.slice(0, this.defaultRecords);
+        this.navigate = false;
       }
-      return this.currentItemsToShow.filter(prof => prof['fullName'].toLowerCase().includes(this.profName));
+      return this.currentItemsToShow.filter(prof => prof['fullName'].toLowerCase().includes(this.profName.toLowerCase()));
     } 
   }
 
   filterProfByDept(dept: string) {
+    this.navigate = true;
     this.dept = dept;
   };
 
@@ -58,12 +67,15 @@ export class ProfsRatingComponent implements OnInit {
   }
 
   getProfessorsLength() {
-    if (!this.dept || this.dept === "All departments") {
+    if ((!this.dept || this.dept === "All departments") && this.profName === "") {
       return this.professors.length;
     }
+    return this.processedProf(this.dept).length;
   }
 
   onPageChange($event) {
-    this.currentItemsToShow = this.professors.slice($event.pageIndex * $event.pageSize, $event.pageIndex * $event.pageSize + $event.pageSize);
+ 
+      this.currentItemsToShow = this.professors.slice($event.pageIndex * $event.pageSize, $event.pageIndex * $event.pageSize + $event.pageSize);
+    
   }
 }

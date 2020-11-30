@@ -36,6 +36,7 @@ export class SemesterPlanningComponent implements OnInit {
   dateForm;
   matcher = new MyErrorStateMatcher();
   studentId = '';
+  dateValid = true;
   constructor(private studentService: StudentService, private router: Router, private route: ActivatedRoute) {
     this.dateForm = new FormGroup({
       startDate: new FormControl('', Validators.required),
@@ -55,11 +56,19 @@ export class SemesterPlanningComponent implements OnInit {
   onSubmit(student: Student) {
     student['id'] = this.studentId;
     student['classesPlan'] = [];
-    student['startDate'] = moment(student['startDate']).format("MM/DD/YYYY");
-    student['endDate'] = moment(student['endDate']).format("MM/DD/YYYY");
-    console.log(student);
-    this.studentService.postStudent(student).subscribe((s) => {
-      this.router.navigate(['home-page/semester-planning/' + s.id]);
-    });
+    if (student['startDate'] && student['endDate']) {
+      const startMonth = moment(student['startDate']).month() + 1;
+      const endMonth = moment(student['endDate']).month() + 1;
+      console.log(startMonth, endMonth);
+      if (startMonth > 6  && startMonth < 9 || endMonth > 6 && endMonth < 9) {
+        this.dateValid = false;
+        return;
+      }
+      student['startDate'] = moment(student['startDate']).format("MM/DD/YYYY");
+      student['endDate'] = moment(student['endDate']).format("MM/DD/YYYY");
+      this.studentService.postStudent(student).subscribe((s) => {
+        this.router.navigate(['home-page/semester-planning/' + s.id]);
+      });
+    }
   }
 }

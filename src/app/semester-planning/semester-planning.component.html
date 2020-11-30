@@ -1,13 +1,7 @@
 <div class="content" fxLayoutGap="20px" fxLayout="row" fxLayout.xs="column" fxFlexFill>
-    <div fxFlex fxFlex="50" fxFlex.xs="30" >
-        <div [style.margin-left]="'10px'">
-            <p [style.margin-top]="'10px'" class="mat-headline">Please choose the date you began your journey at GAC</p>
-            <br />
-            <p [style.margin-top]="'10px'" class="mat-headline">Please choose the date you anticipate to graduate</p>
-        </div>
-    </div>
-    <div class="date-picker" fxFlex="50" fxFlex.xs="70">
+    <div class="date-picker" fxFlex="100" fxFlex.xs="70">
         <form (ngSubmit)="onSubmit(dateForm.value)" [formGroup]="dateForm">
+            <p [style.margin-top]="'10px'" class="mat-headline">Please choose the date you began your journey at GAC</p>
             <mat-form-field class="full-width" appearance="fill">
                 <mat-label>Pick a date</mat-label>
                 <input formControlName="startDate" matInput [attr.disabled]="true" [matDatepicker]="dp3" [errorStateMatcher]="matcher">
@@ -18,6 +12,7 @@
                 </mat-error>
             </mat-form-field>
             <br/>
+            <p [style.margin-top]="'10px'" class="mat-headline">Please choose the date you anticipate to graduate</p>
             <mat-form-field class="full-width" appearance="fill">
                 <mat-label>Pick a date</mat-label>
                 <input formControlName="endDate" matInput [attr.disabled]="true" [matDatepicker]="dp4" [errorStateMatcher]="matcher">
@@ -29,6 +24,9 @@
             </mat-form-field>
             <br/>
             <button mat-raised-button color="primary" type="submit">Submit</button>
+            <div *ngIf="!dateValid">
+                <h3 class="mat-h3">Start date or end date is invalid, please try again.</h3>
+            </div>
         </form>
     </div>
 </div>
