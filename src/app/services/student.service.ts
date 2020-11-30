@@ -42,7 +42,6 @@ export class StudentService {
   addClassesPlan(id: string, classes: any[]): Observable<any> {
      return this.getStudent(id).pipe(
        switchMap(student => {
-        console.log(student);
         classes = classes.map((c,i) => {
           return {
             semester: c,
