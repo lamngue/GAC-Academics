@@ -27,14 +27,6 @@ export class StudentService {
     return student;
   }
 
-  setStudentId(id: string): void {
-    this.studentId = id;
-  }
-
-  getStudentId(): string {
-    return this.studentId;
-  }
-
   postStudent(student: Student): Observable<any> {
     return this.http.post(environment.baseUrl + "/api/student", student);
   }
