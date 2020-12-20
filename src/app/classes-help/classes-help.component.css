@@ -1,0 +1,14 @@
+.center {
+  display: flex;
+  justify-content: center;
+  margin: 5px;
+}
+
+.class-help {
+  padding: 1.5vw;
+}
+
+.question-detail {
+    margin-bottom: 10px;
+    width: 90vw;
+}
