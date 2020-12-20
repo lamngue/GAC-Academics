@@ -1,5 +1,7 @@
 <div>
-    <span class="mat-headline">Departments</span>
+    <div style="text-align: center;">
+        <span class="mat-headline">Departments</span>
+    </div>
     <mat-selection-list #departments [multiple]="false">
         <mat-list-option (click)="filterProfByDept(dept)" *ngFor="let dept of depts">
             {{dept}}

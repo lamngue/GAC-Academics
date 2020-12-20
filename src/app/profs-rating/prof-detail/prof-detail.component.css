@@ -1,18 +1,5 @@
 .prof-overview {
-    position: absolute;
-    left: 5%;
-    top: 10%;
-}
-
-.prof-image {
-    position: relative;
-}
-
-.prof-avatar {
-    position: absolute;
-    right: 10vw;
-    width: 15vw;
-    margin-top: 5vw;
+    margin-top: 10px;
 }
 
 .content { 
@@ -22,12 +9,7 @@
 
 .rating-detail {
     margin-bottom: 10px;
-    width: 450px;
-}
-
-.example-button-row {
-  display: table-cell;
-  width: 490px;
+    width: 85%;
 }
 
 .example-button-row .mat-button-base {

@@ -36,7 +36,7 @@ export class ClassesPlanningComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     this.getStudent().subscribe((student) => {
       this.classes = student['classesPlan'];
-      this.dateProcessed = this.processDate(student.startDate, student.endDate);
+      this.processDate(student.startDate, student.endDate);
     });
   }
 
@@ -98,7 +98,9 @@ export class ClassesPlanningComponent implements OnInit, AfterViewInit {
       semester = 'Fall ' + d2[2];
       dateProcessed.push(semester);
     }
-    return dateProcessed;
+    this.studentService.addClassesPlan(this.studentId, dateProcessed).subscribe(() => {
+      this.dateProcessed = dateProcessed;
+    });
   }
 
   openDialog(sem: string): void {

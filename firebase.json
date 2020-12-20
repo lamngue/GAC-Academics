@@ -1,0 +1,16 @@
+{
+  "hosting": {
+    "public": "dist/rate-my-professors-gac",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

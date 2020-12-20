@@ -1,0 +1,17 @@
+.content { 
+    margin-left: 5vw;
+    margin-top: 2vh;
+}
+
+.q-overview {
+    margin-top: 10px;
+}
+
+.comment-detail {
+    margin-bottom: 10px;
+    width: 85%;
+}
+
+.hide {
+    display: none;
+}

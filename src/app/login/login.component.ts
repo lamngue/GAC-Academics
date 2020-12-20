@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SecurityService } from '../services/security.service';
 import { faGraduationCap } from '@fortawesome/free-solid-svg-icons';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   faGraduationCap = faGraduationCap;
-  constructor(private securityService: SecurityService, private router: Router) { }
+  constructor(private securityService: SecurityService, private router: Router, public route: ActivatedRoute) { }
 
   ngOnInit(): void {
     if (this.securityService.isLoggedIn()) {

@@ -11,9 +11,11 @@
             <span class="mat-subheading-2">GAC Academics</span>
         </a>
         <span class="example-spacer"></span>
+        <div fxShow="true" fxHide.lt-md="true">
+            <span>Good {{getTime()}}, {{name}}!</span>
+        </div>
+        <span class="example-spacer"></span>
             <div fxShow="true" fxHide.lt-md="true">
-                <span>Welcome, {{name}}!</span>
-                <span class="example-spacer"></span>
                 <a mat-button routerLink="/home-page/profs-rating"><span>Profs Rating</span></a>
                 <a mat-button routerLink="/home-page/semester-planning" [queryParams]="{ studentId: studentId }"><span>Classes planning</span></a>
                 <a mat-button (click)="logout()"><span>Log out</span></a>
@@ -30,27 +32,28 @@
         <mat-sidenav-content fxFlexFill>
 
                 <div *ngIf="route.children.length === 0">
-                    <h2 class="mat-display-1" style="text-align: center; margin-top: 5px;">Welcome to GAC Academics project!</h2>
+                    <h1 class="mat-h1" style="text-align: center; margin-top: 5px;"><b>Welcome to GAC Academics project!</b></h1>
                     <div class="content" fxLayout="row" fxLayout.xs="column" fxFlexFill>
                         <div fxFlex="100" class="sec1" fxFlex.xs="55">
-                            <h3 class="mat-h3"><b>What is this website about?</b></h3>
+                            <h1 class="mat-h3"><b>What is this website about?</b></h1>
                             <p>This website is made for students to rate their professors and plan their 4-year academics. If you
                                 are a Gustie and have some coding skills in hand, feel free to contribute to this website by cloning
                                 the repo <a href="https://github.com/lamngue/GAC-Academics">here.</a>
                             </p>
-                            <h3 class="mat-h3"><b>How do I use this website?</b></h3>
+                            <h1 class="mat-h3"><b>How do I use this website?</b></h1>
                             <p>
                                 To view professor ratings, simply navigate to the "Profs Rating", there you can view the list of
                                 professors,
                                 click on "View Detail" to view the detail for each professor and make a new rating. If you find any
                                 professor missing,
                                 please let me know.
+                            </p>
+                            <p>
                                 To add a 4-year plan, navigate to the "Classes Planning" section, input your start and end date at
                                 Gustavus, then the website
                                 will populate the semesters based on the start to end date. From there you can start adding your planned
-                                class.
+                                classes. If your plan changes and you need a few more semester to graduate, then you can do so by clicking on the "Add new semester"
                             </p>
-                            <br />
                             <p>
                                 I made this website since I saw the data for RateMyProfessor is outdated and would like to make a new
                                 one just for
