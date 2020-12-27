@@ -19,7 +19,7 @@ export class StudentGuard implements CanActivate {
     | UrlTree {
     const studentId = next.queryParams.studentId;
     this.studentService.getStudent(studentId).subscribe(s => {
-      if (s) {
+      if (s['startDate'] && s['endDate']) {
         this.router.navigate(['home-page/semester-planning/' + studentId]);
         return false;
       }

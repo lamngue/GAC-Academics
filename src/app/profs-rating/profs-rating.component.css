@@ -16,8 +16,17 @@
     padding: 5px;
 }
 
+.hide {
+  display: none;
+}
+
 .content { 
   padding: 16px; 
+}
+mat-card-content img {
+  margin-top: 5px;
+  object-fit: cover;
+  height: 300px;
 }
 
 .content > mat-card { 
@@ -28,6 +37,10 @@
   display: flex;
   justify-content: space-between;
   margin: 10px;
+}
+
+.professors {
+  overflow: auto;
 }
 
 .footer {

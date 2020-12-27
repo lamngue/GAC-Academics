@@ -1,11 +1,13 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
+import { HomeService } from '../services/home.service';
 import { Observable } from 'rxjs';
 import { SecurityService } from '../services/security.service';
 import { faGraduationCap } from '@fortawesome/free-solid-svg-icons';
 import { ActivatedRoute, Router } from '@angular/router';
 import moment from 'moment';
+import { Student } from '../student';
+import { StudentService } from '../services/student.service';
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
@@ -16,25 +18,30 @@ export class HomePageComponent implements OnInit {
   faGraduationCap = faGraduationCap;
   studentId = null;
   constructor(
-    private http: HttpClient,
-    private securityService: SecurityService,
-    private router: Router,
+    private homeService: HomeService,
+    private studentService: StudentService,
     public route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     this.getUserInfo().subscribe((data) => {
       this.name = data['name']['name'];
-      this.setStudentId(data['name']['sub']);
+      this.studentId = data['name']['sub'];
+      this.postStudent();
     });
   }
 
-  setStudentId(id: string): void {
-    this.studentId = id;
+  postStudent(): void {
+    const student = new Student();
+    student['id'] = this.studentId;
+    student['name'] = this.name;
+    this.studentService.postStudent(student).subscribe(() => {
+      console.log('posted student!');
+    });
   }
 
   getUserInfo(): Observable<any> {
-    return this.http.get(environment.baseUrl + '/v1/home');
+    return this.homeService.getUserInfo();
   }
 
   getTime(): String {
@@ -55,10 +62,6 @@ export class HomePageComponent implements OnInit {
   }
 
   logout() {
-    this.securityService.logout().subscribe(() => {
-      this.securityService.removeToken();
-      this.name = '';
-      this.router.navigate(['/login']);
-    });;
+    this.homeService.logout();
   }
 }

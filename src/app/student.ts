@@ -1,5 +1,6 @@
-export interface Student {
-    id: string,
-    startDate: string,
+export class Student {
+    id: string
+    name: string
+    startDate: string
     endDate: string
 }

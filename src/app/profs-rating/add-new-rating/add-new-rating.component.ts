@@ -5,7 +5,7 @@ import { Professor } from 'src/app/professor';
 import { ProfessorService } from 'src/app/services/professor.service';
 import { FormControl, FormGroupDirective, NgForm, Validators, FormBuilder } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
-
+import * as moment from 'moment';
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
     const isSubmitted = form && form.submitted;
@@ -55,8 +55,8 @@ export class AddNewRatingComponent implements OnInit {
 
   onSubmit(rating: Object) {
     const id = this.route.snapshot.paramMap.get('id');
-    const date = new Date();
-    const dateString = ((date.getMonth() > 8) ? (date.getMonth() + 1) : ('0' + (date.getMonth() + 1))) + '/' + ((date.getDate() > 9) ? date.getDate() : ('0' + date.getDate())) + '/' + date.getFullYear();
+    const date = moment();
+    const dateString = ((date.month() > 8) ? (date.month() + 1) : ('0' + (date.month() + 1))) + '/' + ((date.date() > 9) ? date.date() : ('0' + date.date())) + '/' + date.year();
     rating['dateAdded'] = dateString;
     rating['currentGPA'] = parseFloat(rating['currentGPA']).toFixed(2).toString().replace(".", ",");
     this.professorService.addProfessorRating(id, rating).subscribe(res => this.goBack(), err => console.log(err));

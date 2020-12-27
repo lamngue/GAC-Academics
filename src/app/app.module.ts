@@ -48,9 +48,14 @@ import { LoginComponent } from './login/login.component';
 import { CallbackComponent } from './callback/callback.component';
 import { AuthHeaderInterceptor } from './auth-header.interceptor';
 import { ErrorComponent } from './error/error.component';
+import { RatingModule } from 'ng-starrating';
 import { SemesterPlanningComponent } from './semester-planning/semester-planning.component';
 import { ClassesPlanningComponent } from './semester-planning/classes-planning/classes-planning.component';
 import { NewClassesDialogComponent } from './semester-planning/new-classes-dialog/new-classes-dialog.component';
+import { ClassesHelpComponent } from './classes-help/classes-help.component';
+import { QuestionFormComponent } from './classes-help/question-form/question-form.component';
+import { QuestionDetailComponent } from './classes-help/question-detail/question-detail.component';
+import { NewCommentComponent } from './classes-help/new-comment/new-comment.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -67,6 +72,10 @@ import { NewClassesDialogComponent } from './semester-planning/new-classes-dialo
     SemesterPlanningComponent,
     ClassesPlanningComponent,
     NewClassesDialogComponent,
+    ClassesHelpComponent,
+    QuestionFormComponent,
+    QuestionDetailComponent,
+    NewCommentComponent,
   ],
   imports: [
     BrowserModule,
@@ -81,6 +90,7 @@ import { NewClassesDialogComponent } from './semester-planning/new-classes-dialo
     MatProgressSpinnerModule,
     MatGridListModule,
     FontAwesomeModule,
+    RatingModule,
     MatTableModule,
     MatDatepickerModule,
     MatPaginatorModule,

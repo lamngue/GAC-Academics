@@ -23,11 +23,20 @@
             <div *ngIf="question">
                 <div *ngFor="let comment of question['comments']">
                     <mat-card class="comment-detail">
-                        <p class="mat-subheading-1"><b>{{ comment['by'] }}</b> - {{comment['dateAdded']}}
-                            <button [class.hid]="studentName !== comment['by']" (click)="deleteComment(question['id'],comment['id'])" mat-icon-button color="warn">
-                                <mat-icon>delete</mat-icon>
-                            </button>
-                        </p>
+                        <div class="question-header">
+                            <p class="mat-subheading-1"><b>{{ comment['by'] }}</b> - {{comment['dateAdded']}}</p>
+                            <div class="fill"></div>
+                            <p>
+                                <button [class.hide]="studentName !== comment['by']" (click)="editComment(question['id'], comment)"
+                                    mat-icon-button color="primary">
+                                    <mat-icon>edit</mat-icon>
+                                </button>
+                                <button [class.hide]="studentName !== comment['by']" (click)="deleteComment(question['id'],comment['id'])"
+                                    mat-icon-button color="warn">
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                            </p>
+                        </div>
                         <p>{{ comment['content'] }}</p>
                     </mat-card>
                 </div>
