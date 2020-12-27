@@ -36,9 +36,14 @@ export class NewCommentComponent implements OnInit {
   matcher = new MyErrorStateMatcher();
 
   ngOnInit(): void {
+    if (this.data && this.data.comment) {
+       this.commentForm.setValue({
+         comment: this.data.comment.content,
+       });
+    }
   }
 
   onNoClick(): void {
-    this.dialogRef.close();
+    this.dialogRef.close('cancel');
   }
 }

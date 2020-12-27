@@ -16,6 +16,8 @@
         </div>
         <span class="example-spacer"></span>
             <div fxShow="true" fxHide.lt-md="true">
+                <a mat-button routerLink="/home-page/classes-help" [queryParams]="{ studentId: studentId }"><span>Classes Help</span></a>
+
                 <a mat-button routerLink="/home-page/profs-rating"><span>Profs Rating</span></a>
                 <a mat-button routerLink="/home-page/semester-planning" [queryParams]="{ studentId: studentId }"><span>Classes planning</span></a>
                 <a mat-button (click)="logout()"><span>Log out</span></a>
@@ -24,6 +26,7 @@
     <mat-sidenav-container fxFlexFill class="example-container">
         <mat-sidenav color="primary" #sidenav fxLayout="column" mode="over" opened="false" fxHide.gt-sm="true">
             <div fxLayout="column">
+                <a mat-button routerLink="/home-page/classes-help" [queryParams]="{ studentId: studentId }"><span>Classes Help</span></a>
                 <a mat-button routerLink="/home-page/profs-rating">Profs Rating</a>
                 <a mat-button routerLink="/home-page/semester-planning" [queryParams]="{ studentId: studentId }">Classes planning</a>
                 <a mat-button (click)="logout()"><span>Log out</span></a>
@@ -52,7 +55,11 @@
                                 To add a 4-year plan, navigate to the "Classes Planning" section, input your start and end date at
                                 Gustavus, then the website
                                 will populate the semesters based on the start to end date. From there you can start adding your planned
-                                classes. If your plan changes and you need a few more semester to graduate, then you can do so by clicking on the "Add new semester"
+                                classes. If your plan changes and you need a few more semester to graduate, then you can do so by clicking on the "Add new semester".
+                            </p>
+                            <p>
+                                There's a 'classes help' section that students can post a questions for other students to help. Topics of questions are in accordance with the 
+                                majors that Gustavus offers. 
                             </p>
                             <p>
                                 I made this website since I saw the data for RateMyProfessor is outdated and would like to make a new

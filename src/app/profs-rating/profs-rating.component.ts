@@ -1,5 +1,4 @@
-import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
-import { Professor } from '../professor';
+import { Component, OnInit, ChangeDetectorRef, ViewChild, ElementRef } from '@angular/core';
 import { ProfessorService } from '../services/professor.service';
 @Component({
   selector: 'app-profs-rating',
@@ -8,26 +7,35 @@ import { ProfessorService } from '../services/professor.service';
 })
 export class ProfsRatingComponent implements OnInit {
   opened: boolean;
+  showPic = true;
   profName = '';
   professors = [];
   currentItemsToShow = [];
-  defaultRecords: any = 25;
+  defaultRecords: any = 20;
   departments = [];
   dept: string;
   navigate = false;
-  constructor(private _professorService: ProfessorService) {}
+  @ViewChild("myIdentifier") myIdentifier: ElementRef;
+  width: number;
+  constructor(private _professorService: ProfessorService, private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this._professorService.getProfessors().subscribe((data) => {
-      this.professors = data;
-      this.professors.forEach((prof) => {
-        if (this.departments.indexOf(prof['department']) === -1) {
-          this.departments.push(prof['department']);
-        }
-      });
+    this.professors = data;
+    this.professors.forEach((prof) => {
+      if (this.departments.indexOf(prof['department']) === -1) {
+        this.departments.push(prof['department']);
+      }
+    });
       this.departments.push('All departments');
       this.currentItemsToShow = this.professors.slice(0, this.defaultRecords);
     });
+  }
+
+
+  toggleSideNav() {
+    this.opened = !this.opened;
+    this.showPic = !this.showPic;
   }
 
   processedProf(dept: string) {
@@ -48,7 +56,7 @@ export class ProfsRatingComponent implements OnInit {
         this.currentItemsToShow = this.professors.slice(0, this.defaultRecords);
         this.navigate = false;
       }
-      return this.currentItemsToShow.filter(prof => prof['fullName'].toLowerCase().includes(this.profName.toLowerCase()));
+      return this.professors.filter(prof => prof['fullName'].toLowerCase().includes(this.profName.toLowerCase()));
     } 
   }
 

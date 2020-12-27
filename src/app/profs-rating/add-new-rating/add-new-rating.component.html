@@ -62,7 +62,7 @@
                     Comment is <strong>required</strong>
                 </mat-error>
             </mat-form-field>
-            <button mat-raised-button color="primary" type="submit">Submit</button>
+            <button mat-raised-button color="primary" [disabled]="!commentForm.valid" type="submit">Submit</button>
         </form>
 
     </div>

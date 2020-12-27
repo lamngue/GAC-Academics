@@ -9,6 +9,30 @@
 }
 
 .question-detail {
-    margin-bottom: 10px;
-    width: 90vw;
+  margin-bottom: 10px;
+  width: 90vw;
+}
+
+.question-header {
+  display: flex;
+}
+
+.fill {
+  flex: 1;
+}
+
+.fill-short {
+  flex: 0.01;
+}
+
+.questions {
+  height: calc(100vh - 50px);
+  overflow: auto;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
 }

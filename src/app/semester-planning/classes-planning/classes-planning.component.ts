@@ -34,14 +34,14 @@ export class ClassesPlanningComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.getStudent().subscribe((student) => {
+    this.getStudent();
+  }
+
+  getStudent(): void {
+    this.studentService.getStudent(this.studentId).subscribe((student) => {
       this.classes = student['classesPlan'];
       this.processDate(student.startDate, student.endDate);
     });
-  }
-
-  getStudent(): Observable<Student> {
-    return this.studentService.getStudent(this.studentId);
   }
 
   goBack(): void {
@@ -116,10 +116,8 @@ export class ClassesPlanningComponent implements OnInit, AfterViewInit {
         result['course'] = [result['course']];       
         this.courses.push(result);    
         this.studentService.addClasses(this.studentId, sem, this.courses).subscribe(() => {
-           this.courses = [];
-          this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-            this.router.navigate(["home-page/semester-planning/" + this.studentId]);
-          });
+          this.courses = [];
+          this.getStudent();
         });
       }
     });
@@ -135,9 +133,10 @@ export class ClassesPlanningComponent implements OnInit, AfterViewInit {
     dialogRef.afterClosed().subscribe((data) => {
       if (data) {
         this.studentService.deleteClasses(this.studentId, c, sem).subscribe(() => {
-          this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-            this.router.navigate(["home-page/semester-planning/" + this.studentId]);
-          });
+          // this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+          //   this.router.navigate(["home-page/semester-planning/" + this.studentId]);
+          // });
+          this.getStudent();
         })
       }
     })
@@ -152,9 +151,10 @@ export class ClassesPlanningComponent implements OnInit, AfterViewInit {
       return;
     }
     this.studentService.addNewSemester(studentId).subscribe(() => {
-      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-        this.router.navigate(["home-page/semester-planning/" + this.studentId]);
-      });
+      // this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      //   this.router.navigate(["home-page/semester-planning/" + this.studentId]);
+      // });
+      this.getStudent();
     });
   }
 }

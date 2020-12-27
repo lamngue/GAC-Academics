@@ -1,5 +1,5 @@
 <mat-sidenav-container class="rate-prof" autosize>
-  <mat-sidenav #sidenav mode="side" [(opened)]="opened">
+  <mat-sidenav #sidenav mode="side" [opened]="opened">
     <div class="depts">
       <app-departments (filterByDeptEvent)="filterProfByDept($event)" [depts]="departments"></app-departments>
     </div>
@@ -7,7 +7,7 @@
 
   <mat-sidenav-content class="show-content">
     <div class="ultility">
-      <button mat-button (click)="sidenav.toggle()">{{opened ? 'Hide departments' : 'Show departments'}}</button>
+      <button mat-button (click)="toggleSideNav()">{{opened ? 'Hide departments' : 'Show departments'}}</button>
       <mat-form-field class="prof-search">
         <mat-label>Search for professor</mat-label>
         <input matInput type="text" [(ngModel)]="profName">
@@ -21,27 +21,36 @@
         No professor with name {{this.profName}} found.
       </div>
       <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let prof of processedProf(dept)">
-        <mat-card class="mat-elevation-z4">
-          <mat-card-header>
-            <mat-card-title>{{prof["fullName"]}}</mat-card-title>
-          </mat-card-header>
-          <mat-card-content>
-            <p>
-              Department: {{prof["department"]}}
-            </p>
-            <p>
-              Overall rating: {{getProfOverallRating(prof['ratings'])}}
-            </p>
-          </mat-card-content>
-          <mat-card-actions>
-            <button mat-raised-button routerLink="/home-page/prof-detail/{{prof['id']}}">See details</button>
-          </mat-card-actions>
-        </mat-card>
+        <div>
+          <mat-card class="mat-elevation-z4">
+            <mat-card-header>
+              <mat-card-title>
+                {{prof["fullName"].length > 15 ? prof['fullName'].slice(0, 15) + '...' : prof['fullName']}}
+              </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <img [class.hide]="!showPic" mat-card-image [src]="prof.imageLink">
+              <p>
+                Department: {{prof["department"]}}
+              </p>
+              <div *ngIf="!prof['ratings'] || prof['ratings'].length === 0;else rating">
+                The ratings for this professor is not available
+              </div>
+              <ng-template #rating>
+                Overall rating: <star-rating value="{{this.getProfOverallRating(prof['ratings'])}}" totalstars="5"
+                  checkedcolor="red" uncheckedcolor="black" size="24px" readonly></star-rating>
+              </ng-template>
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-raised-button routerLink="/home-page/prof-detail/{{prof['id']}}">Details</button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
       </div>
     </div>
     <div *ngIf="!this.dept || this.dept === 'All departments'" class="footer">
       <mat-paginator (page)="onPageChange($event)" [length]="getProfessorsLength()" [pageSize]="defaultRecords"
-        [pageSizeOptions]="[5, 10, 25, 100]">
+        [pageSizeOptions]="[5, 10, 20, 50]">
       </mat-paginator>
     </div>
   </mat-sidenav-content>

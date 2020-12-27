@@ -55,7 +55,6 @@ export class SemesterPlanningComponent implements OnInit {
 
   onSubmit(student: Student) {
     student['id'] = this.studentId;
-    student['classesPlan'] = [];
     if (student['startDate'] && student['endDate']) {
       const startMonth = moment(student['startDate']).month() + 1;
       const endMonth = moment(student['endDate']).month() + 1;
@@ -64,10 +63,11 @@ export class SemesterPlanningComponent implements OnInit {
         this.dateValid = false;
         return;
       }
-      student['startDate'] = moment(student['startDate']).format("MM/DD/YYYY");
-      student['endDate'] = moment(student['endDate']).format("MM/DD/YYYY");
-      this.studentService.postStudent(student).subscribe((s) => {
-        this.router.navigate(['home-page/semester-planning/' + s.id]);
+      const startDate = moment(student['startDate']).format("MM/DD/YYYY");
+      const endDate = moment(student['endDate']).format("MM/DD/YYYY");
+      this.studentService.changeStartEndDate(this.studentId, startDate, endDate).subscribe((s) => {
+        console.log(s);
+        this.router.navigate(['home-page/semester-planning/' + this.studentId]);
       });
     }
   }
