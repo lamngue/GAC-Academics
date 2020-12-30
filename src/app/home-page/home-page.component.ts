@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { HomeService } from '../services/home.service';
 import { Observable } from 'rxjs';
-import { SecurityService } from '../services/security.service';
 import { faGraduationCap } from '@fortawesome/free-solid-svg-icons';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import moment from 'moment';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { Student } from '../student';
 import { StudentService } from '../services/student.service';
+import { ChatboxComponent } from 'src/app/chatbox/chatbox.component';
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
@@ -20,7 +20,8 @@ export class HomePageComponent implements OnInit {
   constructor(
     private homeService: HomeService,
     private studentService: StudentService,
-    public route: ActivatedRoute
+    public route: ActivatedRoute,
+    private _bottomSheet: MatBottomSheet
   ) {}
 
   ngOnInit(): void {
@@ -40,22 +41,26 @@ export class HomePageComponent implements OnInit {
     });
   }
 
+  openBottomSheet(): void {
+    this._bottomSheet.open(ChatboxComponent);
+  }
+
   getUserInfo(): Observable<any> {
     return this.homeService.getUserInfo();
   }
 
   getTime(): String {
     const curHour = moment().hour();
-    let message = "";
-    switch(true) {
+    let message = '';
+    switch (true) {
       case curHour >= 0 && curHour < 12:
-        message = "Morning";
+        message = 'Morning';
         break;
       case curHour >= 12 && curHour < 18:
-        message = "Afternoon";
+        message = 'Afternoon';
         break;
-      default: 
-        message = "Evening";
+      default:
+        message = 'Evening';
         break;
     }
     return message;

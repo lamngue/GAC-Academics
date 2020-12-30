@@ -1,0 +1,20 @@
+<h3 style="text-align: center;" mat-subheader>Chats with other users</h3>
+<mat-list *ngFor="let chatMessage of webSocketService.chatMessages">
+    <mat-list-item>
+        <mat-icon mat-list-icon>person</mat-icon>
+        <h4 mat-line>{{chatMessage['username']}}</h4>
+        <p mat-line>{{chatMessage['chat']}}</p>
+    </mat-list-item>
+</mat-list>
+<form (ngSubmit)="onSubmit(sendForm)" #sendForm="ngForm">
+    <div class="content" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+        <div fxFlex="80">
+            <mat-form-field class="full-width">
+                <input matInput name="chat" [errorStateMatcher]="matcher" ngModel placeholder="Is this even needed?">
+            </mat-form-field> 
+        </div>
+        <div fxFlex="20">
+            <button mat-raised-button color="primary" [disabled]="!sendForm.valid" type="submit">Send</button>
+        </div>
+    </div>
+</form>

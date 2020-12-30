@@ -80,10 +80,12 @@ export class QuestionDetailComponent implements OnInit {
       data: {comment: comment}
     });
     dialogRef.afterClosed().subscribe((result) => {
-      comment['content'] = result;
-      this.questionsService.editComment(questionid, comment).subscribe(() => {
-        this.getQuestion();
-      });
+      if (result !== 'cancel') {
+        comment['content'] = result;
+        this.questionsService.editComment(questionid, comment).subscribe(() => {
+          this.getQuestion();
+        });
+      }
     });
   }
 
