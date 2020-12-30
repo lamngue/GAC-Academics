@@ -1,5 +1,5 @@
 # RateMyProfessorsGac
-A project that helps current Gusties with their studies.
+A project that helps current Gusties with their studies. The backend code can be found here: https://github.com/lamngue/GAC-Academics-Server. Demo is at: https://gusties-academics.online/
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.8.
 
