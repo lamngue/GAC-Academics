@@ -20,6 +20,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatInputModule } from '@angular/material/input';
+import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DepartmentsComponent } from './profs-rating/departments/departments.component';
 import { ProfessorService } from 'src/app/services/professor.service';
@@ -56,6 +57,7 @@ import { ClassesHelpComponent } from './classes-help/classes-help.component';
 import { QuestionFormComponent } from './classes-help/question-form/question-form.component';
 import { QuestionDetailComponent } from './classes-help/question-detail/question-detail.component';
 import { NewCommentComponent } from './classes-help/new-comment/new-comment.component';
+import { ChatboxComponent } from './chatbox/chatbox.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -76,6 +78,7 @@ import { NewCommentComponent } from './classes-help/new-comment/new-comment.comp
     QuestionFormComponent,
     QuestionDetailComponent,
     NewCommentComponent,
+    ChatboxComponent,
   ],
   imports: [
     BrowserModule,
@@ -91,6 +94,7 @@ import { NewCommentComponent } from './classes-help/new-comment/new-comment.comp
     MatGridListModule,
     FontAwesomeModule,
     RatingModule,
+    MatBottomSheetModule,
     MatTableModule,
     MatDatepickerModule,
     MatPaginatorModule,

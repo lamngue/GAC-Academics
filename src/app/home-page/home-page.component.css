@@ -11,6 +11,14 @@ mat-sidenav-content {
   min-width: 90vw !important;
 }
 
+.md-fab-bottom-right2 {
+    top: auto !important;
+    right: 20px !important;
+    bottom: 10px !important;
+    left: auto !important;
+    position: fixed !important;
+}
+
 a {
   text-decoration: none;
 }

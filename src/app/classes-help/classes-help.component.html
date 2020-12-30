@@ -34,9 +34,8 @@
                         <p><b>Topic:</b> {{ question['topic'] }}</p>
                         <p><b>Question:</b> {{ question['question'] }}</p>
                         <p><b>By:</b> {{ question['by'] }}</p>
-                        <p>{{question['likedBy'].length === 0 ? 'No likes yet' : (question['likedBy'].length === 1 ? 'One person likes this' : question['likedBy'].length + ' like this')}}</p>
-                        <p class="mat-subheading-1"><b>Comment:
-                            </b>{{ question['comments'] ? (question['comments'].length === 1 ? question['comments'].length + ' comment' : 'There is no comment yet.') : question['comments'].length + ' comments' }}
+                        <p>{{question['likedBy'].length === 0 ? 'No likes yet.' : (question['likedBy'].length === 1 ? 'One person likes this.' : question['likedBy'].length + ' like this.')}}</p>
+                        <p class="mat-subheading-1">{{ question['comments'] ? (question['comments'].length === 1 ? question['comments'].length + ' comment' : 'There is no comment yet.') : question['comments'].length + ' comments' }}
                         </p>
                         <mat-card-actions class="question-header">
                             <button mat-stroked-button 

@@ -15,6 +15,7 @@ mat-sidenav-content {
 
 .profile-pic {
   display: flex;
+  object-fit: cover;
   justify-content: center;
 }
 
