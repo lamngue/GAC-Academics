@@ -1,7 +1,7 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
-  MatBottomSheetRef,
-} from '@angular/material/bottom-sheet';
+  MatDialogRef,
+} from '@angular/material/dialog';
 import {
   FormControl,
   FormGroupDirective,
@@ -35,7 +35,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   templateUrl: './chatbox.component.html',
   styleUrls: ['./chatbox.component.css'],
 })
-export class ChatboxComponent implements OnInit, OnDestroy {
+export class ChatboxComponent implements OnInit {
   chatForm: FormGroup;
   studentName: string;
   messages: Chat[] = [];
@@ -43,7 +43,7 @@ export class ChatboxComponent implements OnInit, OnDestroy {
     public webSocketService: WebsocketService,
     private formBuilder: FormBuilder,
     private homeService: HomeService,
-    private _bottomSheetRef: MatBottomSheetRef<ChatboxComponent>
+    public dialogRef: MatDialogRef<ChatboxComponent>
   ) {
     this.chatForm = this.formBuilder.group({
       chat: ['', Validators.required],
@@ -54,24 +54,23 @@ export class ChatboxComponent implements OnInit, OnDestroy {
     this.getUserInfo().subscribe((data) => {
       this.studentName = data['name']['name'];
     });
-    this.webSocketService.openWebSocket();
   }
+
 
   getUserInfo(): Observable<any> {
     return this.homeService.getUserInfo();
   }
 
-  matcher = new MyErrorStateMatcher();
-
-  onSubmit(sendForm: NgForm) {
-    sendForm.value['username'] = this.studentName;
-    const chat = new Chat(sendForm.value['username'], sendForm.value['chat']);
-    console.log(chat);
-    this.webSocketService.sendMessage(chat);
-    sendForm.controls.chat.reset();
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 
-  ngOnDestroy() {
-    this.webSocketService.closeSocket();
+  matcher = new MyErrorStateMatcher();
+
+  onSubmit(value) {
+    value['username'] = this.studentName;
+    const chat = new Chat(value['username'], value['chat']);
+    this.webSocketService.sendMessage(chat);
+    this.chatForm.reset();
   }
 }
