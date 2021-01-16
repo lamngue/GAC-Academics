@@ -46,7 +46,7 @@ export class SecurityService {
   }
 
   getToken() {
-    return localStorage.getItem(this.tokenKey) ? localStorage.getItem(this.tokenKey).split(";")[0] : null;;
+    return localStorage.getItem(this.tokenKey) ? localStorage.getItem(this.tokenKey).split(";")[0] : null;
   }
 
   getCookie(name: string) {

@@ -4,10 +4,15 @@ import { Observable } from 'rxjs';
 import { faGraduationCap } from '@fortawesome/free-solid-svg-icons';
 import { ActivatedRoute } from '@angular/router';
 import moment from 'moment';
-import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { Student } from '../student';
 import { StudentService } from '../services/student.service';
 import { ChatboxComponent } from 'src/app/chatbox/chatbox.component';
+import * as uuid from 'uuid';
+import {
+  MatDialog,
+} from '@angular/material/dialog';
+import { WebsocketService } from '../services/websocket.service';
+
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
@@ -17,20 +22,26 @@ export class HomePageComponent implements OnInit {
   name: string;
   faGraduationCap = faGraduationCap;
   studentId = null;
+  unreadMessages: number;
+  chatOpen: boolean = false;
   constructor(
     private homeService: HomeService,
     private studentService: StudentService,
     public route: ActivatedRoute,
-    private _bottomSheet: MatBottomSheet
+    public dialog: MatDialog,
+    public webSocketService: WebsocketService
   ) {}
 
   ngOnInit(): void {
     this.getUserInfo().subscribe((data) => {
       this.name = data['name']['name'];
       this.studentId = data['name']['sub'];
+      const myId = uuid.v4();
       this.postStudent();
+      this.webSocketService.openWebSocket(myId);
     });
   }
+
 
   postStudent(): void {
     const student = new Student();
@@ -41,8 +52,16 @@ export class HomePageComponent implements OnInit {
     });
   }
 
-  openBottomSheet(): void {
-    this._bottomSheet.open(ChatboxComponent);
+  openDialog(): void {
+    this.chatOpen = true;
+    const dialogRef = this.dialog.open(ChatboxComponent, {
+      width: '500px',
+      height: '90%'
+    });
+    this.webSocketService.resetUnreadMessages();
+    dialogRef.afterClosed().subscribe(() => {
+      this.chatOpen = false;
+    });
   }
 
   getUserInfo(): Observable<any> {

@@ -50,6 +50,7 @@ import { CallbackComponent } from './callback/callback.component';
 import { AuthHeaderInterceptor } from './auth-header.interceptor';
 import { ErrorComponent } from './error/error.component';
 import { RatingModule } from 'ng-starrating';
+import { MatBadgeModule } from '@angular/material/badge';
 import { SemesterPlanningComponent } from './semester-planning/semester-planning.component';
 import { ClassesPlanningComponent } from './semester-planning/classes-planning/classes-planning.component';
 import { NewClassesDialogComponent } from './semester-planning/new-classes-dialog/new-classes-dialog.component';
@@ -88,6 +89,7 @@ import { ChatboxComponent } from './chatbox/chatbox.component';
     MatToolbarModule,
     MatIconModule,
     BrowserAnimationsModule,
+    MatBadgeModule,
     MatSidenavModule,
     MatDialogModule,
     MatProgressSpinnerModule,

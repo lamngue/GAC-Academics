@@ -2,3 +2,11 @@
     margin-bottom: 10px;
     width: 100%;
 }
+
+mat-list {
+    overflow: auto;
+}
+
+.chat-form {
+    bottom: 0;
+}
