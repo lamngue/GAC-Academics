@@ -33,3 +33,23 @@ p {
   margin-left: 3vw;
   margin-right: 3vw;
 }
+
+.main {
+  display: flex;
+  flex-direction: column;
+  min-height: 90vh;
+}
+
+.footer {
+  flex: 0 0 50px;
+  margin-top: auto;
+  width: 100%;
+  color: white;
+  height: 40px;
+  text-align: center;
+  background-color: #3700B3;
+}
+
+.container {
+  margin: 10px auto;
+}

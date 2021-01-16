@@ -25,7 +25,7 @@
                             </p>
                             <div class="fill"></div>
                             <p>
-                                <button [class.hid]="student && student['name'] !== question['by']" (click)="deleteQuestion(question['id'])"
+                                <button [class.hide]="student && student['name'] !== question['by']" (click)="deleteQuestion(question['id'])"
                                     mat-icon-button color="warn">
                                     <mat-icon>delete</mat-icon>
                                 </button>

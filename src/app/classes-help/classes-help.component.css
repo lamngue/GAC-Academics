@@ -13,6 +13,10 @@
   width: 90vw;
 }
 
+.hide {
+  display: none;
+}
+
 .question-header {
   display: flex;
 }

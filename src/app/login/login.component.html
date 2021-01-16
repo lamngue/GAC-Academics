@@ -25,7 +25,7 @@
             </div>
         </mat-sidenav>
         <mat-sidenav-content fxFlexFill>
-            <div *ngIf="route.children.length === 0">
+            <div class="main" *ngIf="route.children.length === 0">
 
                 <h1 class="mat-h1" style="text-align: center; margin-top: 5px;"><b>Please login with your GAC credentials.</b></h1>
                 <br />
@@ -37,7 +37,7 @@
                             I have an interest in software development and am interested in how software lifecycle works in real enterprises level projects.
                         </p>
                         <p>
-                            In my free time, I enjoy learning tools/technologies, solving algorithmic problems, practicing the guitar and hanging out with friends.
+                            In my free time, I enjoy learning tools/technologies, solving programming problems, practicing the guitar and hanging out with friends.
                         </p>
                     </div>
                     <div fxFlex="40" fxFlexOrder="2" fxFlexOrder.xs="1" class="profile-pic">
@@ -47,6 +47,11 @@
                 </div>
             </div>
             <router-outlet></router-outlet>
+            <footer class="footer">
+                <div class="container">
+                    <h2>Made with <3 by Lam Nguyen &#169; 2020</h2>
+                </div>
+            </footer>
         </mat-sidenav-content>
     </mat-sidenav-container>
 </div>
