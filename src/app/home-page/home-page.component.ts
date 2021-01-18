@@ -36,9 +36,8 @@ export class HomePageComponent implements OnInit {
     this.getUserInfo().subscribe((data) => {
       this.name = data['name']['name'];
       this.studentId = data['name']['sub'];
-      const myId = uuid.v4();
       this.postStudent();
-      this.webSocketService.openWebSocket(myId);
+      this.webSocketService.openWebSocket();
     });
   }
 
