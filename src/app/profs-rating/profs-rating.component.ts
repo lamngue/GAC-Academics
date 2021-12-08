@@ -22,6 +22,7 @@ export class ProfsRatingComponent implements OnInit {
   ngOnInit(): void {
     this._professorService.getProfessors().subscribe((data) => {
     this.professors = data;
+    this.professors.sort((prof1, prof2) => prof1['fullName'] > prof2['fullName'] ? 1 : -1);
     this.professors.forEach((prof) => {
       if (this.departments.indexOf(prof['department']) === -1) {
         this.departments.push(prof['department']);
