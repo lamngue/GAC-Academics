@@ -9,7 +9,7 @@
             <h4 mat-line>{{chatMessage['username']}}</h4>
             <br />
         </mat-list-item>
-        <p>{{chatMessage['chat']}}</p>
+        <p class="chat-msg">{{chatMessage['chat']}}</p>
     </mat-list>
 </div>
 <div class="full-width chat-form">
@@ -17,7 +17,7 @@
         <div class="content" fxLayout="row" fxLayout.xs="column" fxFlexFill>
             <div fxFlex="80">
                 <mat-form-field class="full-width">
-                    <input matInput formControlName="chat" [errorStateMatcher]="matcher" placeholder="Is this even needed?">
+                    <input matInput formControlName="chat" [errorStateMatcher]="matcher" placeholder="Type something">
                 </mat-form-field>
             </div>
             <div fxFlex="5"></div>

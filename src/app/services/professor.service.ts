@@ -32,4 +32,21 @@ export class ProfessorService {
         }
       );
     }
+
+    editProfessorRating(id: string, ratingId: string, studentId: string, isLike: boolean) {
+      const request = {
+        ratingId,
+        studentId,
+        isLike
+      };
+      return this.http.put<void>(
+        environment.baseUrl + '/api/professor/rating/' + id,
+        request,
+        {
+          headers: new HttpHeaders({
+            'content-type': 'application/json',
+          }),
+        }
+      );
+    }
 }

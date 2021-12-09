@@ -16,7 +16,7 @@ export class WebsocketService {
   constructor() { }
 
   // open the connection
-  public openWebSocket(id: string) {
+  public openWebSocket() {
     this.webSocket = new WebSocket(environment.wsUrl + '/chat');
     this.webSocket.onopen = (event) => {
       this.connection = event;
