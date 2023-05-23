@@ -34,12 +34,8 @@ export class QuestionFormComponent implements OnInit {
       this.questionForm = this.formBuilder.group({
         topic: ['', Validators.required],
         question: ['', Validators.required],
-<<<<<<< HEAD
         content: ['', Validators.required ],
-=======
-        content: ['', Validators.required],
->>>>>>> 1028f179a9112269c6ff280b5338e5a25aa4a6f1
-      });
+        });
     }
 
   ngOnInit(): void {
@@ -61,7 +57,7 @@ export class QuestionFormComponent implements OnInit {
   onSubmit(question: Question) {
     const date = moment();
     const dateString = ((date.month() > 8) ? (date.month() + 1) : ('0' + (date.month() + 1))) + '/' + ((date.date() > 9) ? date.date() : ('0' + date.date())) + '/' + date.year();
-    question['dateAdded'] = dateString;
+    question['dateAdded'] = dateString ;
     question['by'] = this.studentName;
     question['comments'] = [];
     this.questionsService.postQuestion(question).subscribe(res => this.goBack(), err => console.log(err));
