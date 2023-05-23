@@ -1,0 +1,87 @@
+<div class="content new-rating" fxLayout="row" fxLayoutGap="16px" fxLayout.xs="column" fxFlexFill>
+    <div fxFlex="50">
+        <button mat-raised-button (click)="goBack()">Back</button>
+        <p style="margin-top: 10px;" class="mat-headline">
+            Please add a new question
+        </p>
+        <form (ngSubmit)="onSubmit(questionForm.value)" [formGroup]="questionForm" class="question-form">
+            <mat-form-field class="full-width">
+                <mat-label>Topic/Major</mat-label>
+                <mat-select formControlName="topic" [errorStateMatcher]="matcher">
+                    <mat-option value="Accounting">Accounting</mat-option>
+                    <mat-option value="Arts">Arts</mat-option>
+                    <mat-option value="Athletic Training">Athletic Training</mat-option>
+                    <mat-option value="Biology">Biology</mat-option>
+                    <mat-option value="Biochemistry and Molecular Biology">Biochemistry and Molecular Biology</mat-option>
+                    <mat-option value="Communication Arts/Literature Teaching">Communication Arts/Literature Teaching</mat-option>
+                    <mat-option value="Chemistry">Chemistry</mat-option>
+                    <mat-option value="Classics">Classics</mat-option>
+                    <mat-option value="Coaching">Coaching</mat-option>
+                    <mat-option value="Communication Studies">Communication Studies</mat-option>
+                    <mat-option value="MCS">MCS</mat-option>
+                    <mat-option value="Dance">Dance</mat-option>
+                    <mat-option value="Econ/Managament">Econ/Managament</mat-option>
+                    <mat-option value="Education">Education</mat-option>
+                    <mat-option value="English">English</mat-option>
+                    <mat-option value="Environmental Studies">Environmental Studies</mat-option>
+                    <mat-option value="Foreign Languages/Studies">Foreign Languages/Studies</mat-option>
+                    <mat-option value="Geography/Geology">Geography/Geology</mat-option>
+                    <mat-option value="Gender, Women &Sexuality Studies">Gender, Women &Sexuality Studies</mat-option>
+                    <mat-option value="Health/Nursing">Health/Nursing</mat-option>
+                    <mat-option value="History">History</mat-option>
+                    <mat-option value="Music/Music Education">Music/Music Education</mat-option>
+                    <mat-option value="Physical Education">Physical Education</mat-option>
+                    <mat-option value="Philosophy">Philosophy</mat-option>
+                    <mat-option value="Physics">Physics</mat-option>
+                    <mat-option value="Political Science">Political Science</mat-option>
+                    <mat-option value="Psychology">Psychology</mat-option>
+                    <mat-option value="Religion">Religion</mat-option>
+                    <mat-option value="Sociology">Sociology</mat-option>
+                    <mat-option value="Theater">Theater</mat-option>
+                </mat-select>
+                <mat-error *ngIf="questionForm.get('topic').hasError('required')">
+                    Topic is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+            <br />
+            <mat-form-field class="full-width">
+                <mat-label>Question</mat-label>
+                <input matInput formControlName="question" [errorStateMatcher]="matcher" placeholder="Is this even needed?">
+                <mat-hint>Enter a question</mat-hint>
+                <mat-error *ngIf="questionForm.get('question').hasError('required')">
+                    Question is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+            <br />
+            <mat-form-field class="full-width">
+                <mat-label>Content</mat-label>
+                <textarea formControlName="content" class="question-content" [errorStateMatcher]="matcher" matInput
+                    placeholder="Ex. What is the meaning of life?"></textarea>
+                <mat-error *ngIf="questionForm.get('content').hasError('required')">
+                    Content is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+            <button mat-raised-button color="primary" [disabled]="!questionForm.valid" type="submit">Submit</button>
+        </form>
+
+    </div>
+    <div fxFlex="50">
+        <mat-card>
+            <mat-card-title>Some rule(s) regarding adding a new question</mat-card-title>
+            <mat-card-subtitle>Do(s):</mat-card-subtitle>
+            <mat-card-content>
+                <ol>
+                    <li>Check your question for grammatical errors</li>
+                    <li>Be specific about your question, show what you've tried</li>
+                    <li>Please check the right topic before you asked</li>
+                </ol>
+            </mat-card-content>
+            <mat-card-subtitle>Don't(s):</mat-card-subtitle>
+            <mat-card-content>
+                <ol>
+                    <li>Ask disrespectful question using profanity</li>
+                </ol>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

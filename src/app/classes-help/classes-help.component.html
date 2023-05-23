@@ -1,0 +1,62 @@
+<div class="center">
+    <p class="mat-title">Welcome to classes help section. Feel free to post a question, or to give answer to the
+        questions
+        listed below.
+    </p>
+</div>
+<div class="content class-help" fxLayoutGap="20px" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+    <button mat-raised-button color="primary" routerLink="/home-page/classes-help/new-question">
+        New Question
+    </button>
+</div>
+
+<div class="content class-help" fxLayoutGap="20px" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+    <div fxFlex="100">
+        <div *ngIf="questions && questions.length === 0;else list">
+            <p class="mat-h4">There is currently no question yet.</p>
+        </div>
+        <ng-template #list>
+            <div class="questions" >
+                <div *ngFor="let question of currentItemsToShow">
+                    <mat-card class="question-detail">
+                        <div class="question-header">
+                            <p class="mat-subheading-1"><b>Date:</b>
+                                {{ question['dateAdded'] }}
+                            </p>
+                            <div class="fill"></div>
+                            <p>
+                                <button [class.hide]="student && student['name'] !== question['by']" (click)="deleteQuestion(question['id'])"
+                                    mat-icon-button color="warn">
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                            </p>
+                        </div>
+                        <p><b>Topic:</b> {{ question['topic'] }}</p>
+                        <p><b>Question:</b> {{ question['question'] }}</p>
+                        <p><b>By:</b> {{ question['by'] }}</p>
+                        <p>{{question['likedBy'].length === 0 ? 'No likes yet.' : (question['likedBy'].length === 1 ? 'One person likes this.' : question['likedBy'].length + ' like this.')}}</p>
+                        <p class="mat-subheading-1">{{ question['comments'] ? (question['comments'].length === 1 ? question['comments'].length + ' comment' : 'There is no comment yet.') : question['comments'].length + ' comments' }}
+                        </p>
+                        <mat-card-actions class="question-header">
+                            <button mat-stroked-button 
+                            [color]="!isQuestionLiked(question) ? 'primary' : 'warn'"
+                            (click)="toggleLikeQuestion(question['id'])" aria-label="Like this question.">
+                                {{!isQuestionLiked(question) ? 'Like' : 'Unlike'}}
+                            </button> 
+                            <div class="fill-short"></div>
+                            <button mat-raised-button
+                                routerLink="/home-page/classes-help/question-detail/{{ question['id'] }}">Details
+                            </button>
+                        </mat-card-actions>
+                    </mat-card>
+                </div>
+            </div>
+            <div class="footer">
+                <mat-paginator (page)="onPageChange($event)" [length]="questions && questions.length" [pageSize]="defaultRecords"
+                    [pageSizeOptions]="[5, 10, 20, 50]">
+                </mat-paginator>
+            </div>
+        </ng-template>
+
+    </div>
+</div>

@@ -1,0 +1,17 @@
+.prof-overview {
+    margin-top: 10px;
+}
+
+.content { 
+    margin-left: 5vw;
+    margin-top: 2vh;
+}
+
+.rating-detail {
+    margin-bottom: 10px;
+    width: 85%;
+}
+
+.example-button-row .mat-button-base {
+  margin: 8px 8px 8px 0;
+}

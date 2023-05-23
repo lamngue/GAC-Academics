@@ -1,0 +1,32 @@
+<div *ngIf="data &&data.content;else addComment">
+    <h1 mat-dialog-title>Delete Question</h1>
+    <mat-dialog-content>
+        <p>{{data.content}}</p>
+    </mat-dialog-content>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button [mat-dialog-close]="data">Yes</button>
+</div>
+
+<ng-template #addComment>
+    <h1 mat-dialog-title>{{data && data.comment ? 'Edit Comment' : 'Add a new comment'}}</h1>
+    <div>
+        <mat-dialog-content>
+            <form class="example-form" [formGroup]="commentForm">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Comment</mat-label>
+                    <input matInput formControlName="comment"  [errorStateMatcher]="matcher"
+                        placeholder="ABCXYZ"/>
+                    <mat-error *ngIf="commentForm.get('comment').hasError('required')">
+                        Comment is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </form>
+        </mat-dialog-content>
+        <mat-dialog-actions>
+            <button mat-button (click)="onNoClick()">Cancel</button>
+            <button mat-button [disabled]="!commentForm.valid"
+                [mat-dialog-close]="commentForm.get('comment').value">Save</button>
+        </mat-dialog-actions>
+    </div>
+
+</ng-template>

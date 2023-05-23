@@ -1,0 +1,79 @@
+<div>
+    <mat-toolbar color="primary">
+        <div fxShow="true" fxHide.gt-sm="true">
+            <button mat-icon-button (click)="sidenav.toggle()">
+                <mat-icon>menu</mat-icon>
+            </button>
+        </div>
+
+        <a mat-button routerLink="/">
+            <fa-icon [icon]="faGraduationCap" size="lg"></fa-icon>
+            <span class="mat-subheading-2">GAC Academics</span>
+        </a>
+        <span class="example-spacer"></span>
+        <div fxShow="true" fxHide.lt-md="true">
+            <span>Good {{getTime()}}, {{name}}!</span>
+        </div>
+        <span class="example-spacer"></span>
+            <div fxShow="true" fxHide.lt-md="true">
+                <a mat-button routerLink="/home-page/classes-help" [queryParams]="{ studentId: studentId }"><span>Classes Help</span></a>
+
+                <a mat-button routerLink="/home-page/profs-rating"><span>Profs Rating</span></a>
+                <a mat-button routerLink="/home-page/semester-planning" [queryParams]="{ studentId: studentId }"><span>Classes planning</span></a>
+                <a mat-button (click)="logout()"><span>Log out</span></a>
+            </div>  
+    </mat-toolbar>
+    <mat-sidenav-container fxFlexFill class="example-container">
+        <mat-sidenav color="primary" #sidenav fxLayout="column" mode="over" opened="false" fxHide.gt-sm="true">
+            <div fxLayout="column">
+                <a mat-button routerLink="/home-page/classes-help" [queryParams]="{ studentId: studentId }"><span>Classes Help</span></a>
+                <a mat-button routerLink="/home-page/profs-rating">Profs Rating</a>
+                <a mat-button routerLink="/home-page/semester-planning" [queryParams]="{ studentId: studentId }">Classes planning</a>
+                <a mat-button (click)="logout()"><span>Log out</span></a>
+            </div>
+        </mat-sidenav>
+        <mat-sidenav-content fxFlexFill>
+
+                <div *ngIf="route.children.length === 0">
+                    <h1 class="mat-h1" style="text-align: center; margin-top: 5px;"><b>Welcome to GAC Academics project!</b></h1>
+                    <div class="content" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+                        <div fxFlex="100" class="sec1" fxFlex.xs="55">
+                            <h1 class="mat-h3"><b>What is this website about?</b></h1>
+                            <p>This website is made for students to rate their professors, plan their 4-year academics, also post their academic questions and chat with others students. If you
+                                are a Gustie and have some coding skills in hand, feel free to contribute to this website by cloning
+                                the repo <a href="https://github.com/lamngue/GAC-Academics">here.</a>
+                            </p>
+                            <h1 class="mat-h3"><b>How do I use this website?</b></h1>
+                            <p>
+                                To view professor ratings, simply navigate to the "Profs Rating", there you can view the list of
+                                professors,
+                                click on "View Detail" to view the detail for each professor and make a new rating. If you find any
+                                professor missing,
+                                please let me know.
+                            </p>
+                            <p>
+                                To add a 4-year plan, navigate to the "Classes Planning" section, input your start and end date at
+                                Gustavus, then the website
+                                will populate the semesters based on the start to end date. From there you can start adding your planned
+                                classes. If your plan changes and you need a few more semester to graduate, then you can do so by clicking on the "Add new semester".
+                            </p>
+                            <p>
+                                There's a 'classes help' section that students can post a questions for other students to help. Topics of questions are in accordance with the 
+                                majors that Gustavus offers. Also, you can click on the message button and message anyone who is also using the website, they will be notified by a unread icon
+                                appears on top of the message icon.
+                            </p>
+                            <p>
+                                I made this website since I saw the data for RateMyProfessor is outdated and would like to make a new
+                                one just for
+                                Gustavus students. If you found any issue, please let me know.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <router-outlet></router-outlet>
+                <button class="md-fab-bottom-right2" (click)="openDialog()" mat-fab color="warn">
+                    <mat-icon [matBadgeHidden]="webSocketService.getUnreadMessages() === 0 || this.chatOpen" [matBadge]="webSocketService.getUnreadMessages()">chat</mat-icon>
+                </button>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>

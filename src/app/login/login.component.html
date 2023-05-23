@@ -1,0 +1,59 @@
+<div>
+    <mat-toolbar color="primary">
+        <div fxShow="true" fxHide.gt-sm="true">
+            <button mat-icon-button (click)="sidenav.toggle()">
+                <mat-icon>menu</mat-icon>
+            </button>
+        </div>
+
+        <a mat-button class="companyName" routerLink="/">
+            <fa-icon [icon]="faGraduationCap" size="lg"></fa-icon>
+            <span class="mat-subheading-2">GAC Academics</span>
+        </a>
+        <span class="example-spacer"></span>
+
+        <div fxShow="true" fxHide.lt-md="true">
+            <a mat-button (click)="login()"><span>Login</span></a>
+        </div>
+
+
+    </mat-toolbar>
+    <mat-sidenav-container fxFlexFill class="example-container">
+        <mat-sidenav color="primary" #sidenav fxLayout="column" mode="over" opened="false" fxHide.gt-sm="true">
+            <div fxLayout="column">
+                <a mat-button (click)="login()"><span>Login</span></a>
+            </div>
+        </mat-sidenav>
+        <mat-sidenav-content fxFlexFill>
+            <div class="main" *ngIf="route.children.length === 0">
+
+                <h1 class="mat-h1" style="text-align: center; margin-top: 5px;"><b>Please login with your GAC credentials.</b></h1>
+                <br />
+                <div class="content" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+                    <div fxFlex="60" fxFlexOrder="1" fxFlexOrder.xs="2" class="abt-me">
+                        <h1 class="mat-h3" style="text-align: center;"><b>About me</b></h1>
+                        <p>
+                            My name is Lam Nguyen and I am a senior at Gustavus Adolphus College in Minnesota. 
+                            I have an interest in software development and am interested in how software lifecycle works in real enterprises level projects.
+                        </p>
+                        <p>
+                            In my free time, I enjoy learning tools/technologies, solving programming problems, practicing the guitar and hanging out with friends.
+                        </p>
+                    </div>
+                    <div fxFlex="40" fxFlexOrder="2" fxFlexOrder.xs="1" class="profile-pic">
+                        <img src="https://i.imgur.com/OktS7Jp.jpeg" 
+                            alt="Profile picture"/>
+                    </div>
+                </div>
+            </div>
+            <router-outlet></router-outlet>
+            <footer class="footer">
+                <div class="container">
+                    <h2>Made with <3 by Lam Nguyen &#169; 2020</h2>
+                </div>
+            </footer>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>
+
+  

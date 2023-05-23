@@ -1,0 +1,51 @@
+.show-content {
+    margin: 5px;
+}
+
+.rate-prof {
+    height: 95vh;
+    padding: 5px;
+}
+
+.prof-search {
+  width: 200px;
+  margin-left: 10px;
+}
+
+.depts {
+    padding: 5px;
+}
+
+.hide {
+  display: none;
+}
+
+.content { 
+  padding: 16px; 
+}
+mat-card-content img {
+  margin-top: 5px;
+  object-fit: cover;
+  height: 300px;
+}
+
+.content > mat-card { 
+  width: 200px; 
+}
+
+.ultility {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+}
+
+.professors {
+  overflow: auto;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}

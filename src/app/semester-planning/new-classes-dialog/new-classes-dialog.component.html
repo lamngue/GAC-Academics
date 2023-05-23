@@ -1,0 +1,35 @@
+<div *ngIf="data.semester">
+    <div *ngIf="data.numberOfClasses;else newClasses">
+        <h1 mat-dialog-title>Modifying classes for {{data.semester}}</h1>
+        <p>You have exceeded the maximum amount of classes</p>
+    </div>
+    <ng-template #newClasses>
+        <h1 mat-dialog-title>Modifying classes for {{data.semester}}</h1>
+        <div mat-dialog-content>
+            <p>Please type the name of your classes, along with the course code.</p>
+            <mat-form-field>
+                <mat-label>Class Name here</mat-label>
+                <input matInput [(ngModel)]="data.course">
+            </mat-form-field>
+        </div>
+        <div mat-dialog-actions>
+            <button mat-button (click)="onNoClick()">Cancel</button>
+            <button mat-button [disabled]="data.course.length === 0" [mat-dialog-close]="data" cdkFocusInitial>Save</button>
+        </div>
+    </ng-template>
+</div>
+<div *ngIf="data.deleteMsg && !data.course && !data.numberOfClasses">
+    <h1>Deleting classes/Semester</h1>
+    <p>{{data.deleteMsg}}</p>
+    <div mat-dialog-actions>
+        <button mat-button (click)="onNoClick()">Cancel</button>
+        <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Yes</button>
+    </div>
+</div>
+<div *ngIf="data.semOverflowMsg && !data.deleteMsg && !data.course && !data.numberOfClasses">
+    <h1>Semesters exceed maximum</h1>
+    {{ data.semOverflowMsg }}
+    <div mat-dialog-actions>
+        <button mat-button (click)="onNoClick()">Cancel</button>
+    </div>
+</div>
