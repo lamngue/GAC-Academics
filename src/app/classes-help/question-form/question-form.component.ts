@@ -34,7 +34,11 @@ export class QuestionFormComponent implements OnInit {
       this.questionForm = this.formBuilder.group({
         topic: ['', Validators.required],
         question: ['', Validators.required],
+<<<<<<< HEAD
         content: ['', Validators.required ],
+=======
+        content: ['', Validators.required],
+>>>>>>> 1028f179a9112269c6ff280b5338e5a25aa4a6f1
       });
     }
 
