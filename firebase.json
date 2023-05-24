@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/rate-my-professors-gac",
+    "public": "dist",
     "ignore": [
       "firebase.json",
       "**/.*",
