@@ -6,7 +6,7 @@ A project that helps current Gusties with their studies. The backend code can be
 ![image](https://user-images.githubusercontent.com/34784901/104797694-b5e02580-57f2-11eb-95f3-bc1d3c4d9ca5.png)
 ![image](https://user-images.githubusercontent.com/34784901/104797712-cd1f1300-57f2-11eb-9808-5af3d2e8ca7e.png)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.8.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.0.
 
 ## Development server
 
