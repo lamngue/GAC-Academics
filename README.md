@@ -1,4 +1,4 @@
-# RateMyProfessorsGac
+# RateMyProfessorsGac (LEGACY PROJECT, PLANNING FOR A REVIVAL SOON)
 A project that helps current Gusties with their studies. The backend code can be found here: https://github.com/lamngue/GAC-Academics-Server. Demo is at: https://gac-academic.web.app/login
 
 ![image](https://user-images.githubusercontent.com/34784901/104797363-115ce400-57f0-11eb-894f-ab5fbfb0ac7d.png)
